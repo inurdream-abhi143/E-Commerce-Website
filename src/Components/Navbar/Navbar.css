@@ -41,6 +41,7 @@ box-shadow: 0 1PX 3PX -2PX black ;
     cursor: pointer;
 
  }
+ 
  .bottom-line{
     border: none;
     width: 80%;
@@ -51,11 +52,12 @@ box-shadow: 0 1PX 3PX -2PX black ;
  .nav-login-cart{
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 25px;
+    font-size: 22px;
  }
  .btn{
-    width: 120px;
-    height: 50px;
+    width: 130px;
+    height: 60px;
     border: none;
     background-color: aqua;
     border-radius: 25px;

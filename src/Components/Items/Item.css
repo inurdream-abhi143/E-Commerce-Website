@@ -6,6 +6,10 @@
     margin: 6px 0;
 
 }
+.item img{
+    width: 320px;
+    
+}
 .item-prices{
     display: flex;
     gap:20px

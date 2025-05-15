@@ -1,12 +1,97 @@
-# React + Vite
+# 🛍️ E-Commerce React Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A fully functional e-commerce web app built with ReactJS, Context API, and useReducer — inspired by modern online shopping platforms. Users can browse products, add them to a cart, enter shipping information, apply discounts, and proceed to payment.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🛒 **Cart Functionality** — Add/remove items, adjust quantity, see total.
+- 🗂️ **Product Categorization** — Filter items by categories (Men, Women, Kids).
+- 🌐 **Routing with React Router** — Seamless page transitions.
+- 💸 **Discount System** — Calculate and apply discount logic.
+- **(Coming Soon)**
+- 📦 **Shipping Method Page** — Capture user details & shipping method.
+- 💳 **(Planned) Payment Gateway Integration** — Prepare for Stripe/Razorpay connection.
+- 🔍 **Zoom Lens Preview** — Enhance product browsing.
+- ⚙️ **Global State Management** — Powered by Context API + useReducer.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+## 🧠 Tech Stack
+
+| Tech                        | Purpose                 |
+| --------------------------- | ----------------------- |
+| React                       | Frontend UI             |
+| React Router                | Routing between pages   |
+| Context API + useReducer    | Global state management |
+| CSS                         | Styling                 |
+| JavaScript (ES6+)           | Core logic              |
+| Razorpay / Stripe (Planned) | Payment integration     |
+
+---
+
+## 📂 Folder Structure
+
+```
+E-commerce/
+├── public/
+├── src/
+│   ├── Components/
+│   │   ├── Navbar/
+│   │   ├── Cart/
+│   │   ├── Items/
+│   │   └── ShipingMethod/
+│   ├── Contexts/
+│   │   └── ShopContext.jsx
+│   ├── Pages/
+│   │   ├── Home.jsx
+│   │   ├── Cart.jsx
+│   │   └── ShopCategory.jsx
+│   ├── assets/
+│   └── App.js
+├── package.json
+└── README.md
+```
+
+---
+
+## 🛠️ Setup & Installation
+
+1. **Clone the repository**
+
+   git clone https://github.com/your-username/E-commerce.git
+
+2. **Install dependencies**
+
+   npm install
+
+3. **Run the development server**
+
+   npm run dev
+
+4. **Open in Browser**
+
+   http://localhost:5173
+
+---
+
+## 🔮 Upcoming Features
+
+- 🔍 Product Image Zoom Lens
+- 💳 Payment Gateway Integration
+- 🧾 Invoice/Order Summary Page
+- 🌈 Dark Mode Toggle
+
+---
+
+## 🙌 Acknowledgements
+
+Tutorial inspired by [GreatStack](https://www.youtube.com/watch?v=jbfuzcrfjqQ) — extended with custom features and personalized improvements.
+
+---
+
+## 📧 Contact
+
+Built by **@Abhi** — MERN Stack trainee and builder of cool things.  
+Feel free to connect or contribute!

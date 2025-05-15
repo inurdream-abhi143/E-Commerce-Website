@@ -1,0 +1,19 @@
+.Shiping-method{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.shiping-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    border:2px solid black;
+    width: 600px;
+    height: 60vh;
+}
+.contact-info{
+    display: flex;
+    flex-direction: column;
+
+}

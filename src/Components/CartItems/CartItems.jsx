@@ -12,8 +12,14 @@ const CartItems = () => {
 
 
 const discountCodes ={
-   SUMMER10: { type: "percentage", value: 10 },
-  FREEDOM50: { type: "flat", value: 50 }
+   SUMMER10: { type: "percentage", value: 10 },      // 10% off
+  FREEDOM50: { type: "flat", value: 50 },           // $50 off
+  SPRING20: { type: "percentage", value: 20 },      // 20% off
+  SAVE25: { type: "flat", value: 25 },              // $25 off
+  WELCOME15: { type: "percentage", value: 15 },     // 15% off for newbies
+  HOLIDAY100: { type: "flat", value: 100 },         // $100 off for the holidays
+  FLASH5: { type: "flat", value: 5 },                // $5 off flash sale
+  VIP30: { type: "percentage", value: 30 }, 
 
 };
 const addDiscount =(e)=>{
@@ -80,7 +86,7 @@ const addDiscount =(e)=>{
                 <hr/>
                  <div className="cartitems-total-item">
                     <p>Discount</p>
-                    <p>{discountedTotal?getTotalCartAmount()-discountedTotal:0}</p>
+                    <p>${discountedTotal?getTotalCartAmount()-discountedTotal:0}</p>
                 </div>
                 <hr/>
                 <div className="cartitems-total-item">

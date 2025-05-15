@@ -4,12 +4,14 @@ import footer_logo from "../../assets/logo_big.png"
 import instagram_icon from "../../assets/instagram_icon.png"
 // import printester_icon from "../../assets/printester_icon.png"
 import whatsapp_icon from "../../assets/whatsapp_icon.png"
+import { Link } from 'react-router-dom'
 const Footer = () => {
   return (
     <div className='footer'>
       <div className="footer-logo">
-        <img  src={footer_logo} alt=''/>
+       <Link className="footer-link" to='/'>  <img  src={footer_logo} alt=''/>
         <p>SHOPPER</p>
+         </Link> 
       </div>
       <ul className='footer-links'>
         <li>Company</li>
@@ -20,7 +22,7 @@ const Footer = () => {
       </ul>
       <div className="footer-social-icon">
         <div className='footer-icons-container'>
-            <img src={instagram_icon} alt='' />
+           <img src={instagram_icon} alt='' />
         </div>
         {/* <div className='footer-icons-container'>
             <img src={printester_icon} alt='' />

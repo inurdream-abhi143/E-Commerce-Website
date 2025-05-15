@@ -1,11 +1,39 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import "./CartItems.css"
 import { ShopContext } from '../../Contexts/ShopContext'
 import remove_icon from "../../assets/cart_cross_icon.png"
 
+
 const CartItems = () => {
     const {getTotalCartAmount,all_products, cartItems, removeFromCart } = useContext(ShopContext);
+    const [promoCode, setPromoCode] = useState("");
+    const [discountedTotal, setDiscountedTotal] = useState(0);
 
+
+
+const discountCodes ={
+   SUMMER10: { type: "percentage", value: 10 },
+  FREEDOM50: { type: "flat", value: 50 }
+
+};
+const addDiscount =(e)=>{
+ e.preventDefault();
+     if(discountCodes[promoCode]){
+      if(discountCodes[promoCode].type ==="percentage"){
+    const price = getTotalCartAmount();
+      const discount_price = price * (1-discountCodes[promoCode].value/100);
+      //  console.log("discountPrice",discount_price);
+      setDiscountedTotal(discount_price);
+  }else if(discountCodes[promoCode].type ==="flat"){
+        const price = getTotalCartAmount();
+        const discount_price = price- discountCodes[promoCode].value
+        console.log("discounted_price",discount_price);
+         setDiscountedTotal(discount_price);
+        
+      }else{
+        alert("Invalid Coupon Code");
+      }
+    }}
   return (
     <div className='cartitems'>
       <div className="cartitems-format-main">
@@ -50,9 +78,14 @@ const CartItems = () => {
                     <p>Free</p>
                 </div>
                 <hr/>
+                 <div className="cartitems-total-item">
+                    <p>Discount</p>
+                    <p>{discountedTotal?getTotalCartAmount()-discountedTotal:0}</p>
+                </div>
+                <hr/>
                 <div className="cartitems-total-item">
                     <h3>Total</h3>
-                    <h3>${getTotalCartAmount()}</h3>
+                    <h3>${discountedTotal?discountedTotal:getTotalCartAmount()}</h3>
                 </div>
             </div>
             <button>PROCEED TO CHEKOUT</button>
@@ -60,8 +93,10 @@ const CartItems = () => {
         <div className="cartitems-promocode">
             <p>If you have a promo code , Enter here</p>
             <div className="cartitems-promobox">
-                <input type='text'  placeholder='Promo Code'/>
-                <button>Submit</button>
+                <input type='text'  placeholder='Promo Code' 
+                value={promoCode}
+                onChange={(e)=>{setPromoCode(e.target.value)}}/>
+                <button onClick={(e)=>{addDiscount(e)}}>Submit</button>
             </div>
         </div>
     </div>

@@ -2,6 +2,7 @@ import React, { useContext, useReducer, useState } from 'react'
 import "./ShipingMethod.css"
 import{ShippingReducer}from "../Reducer/ShippingReducer";
 import { ShippingContext } from '../../Contexts/ShippingContext';
+import { Link, useNavigate } from 'react-router-dom';
 
 const ShipingMethod = () => {
   const initilstate = {
@@ -21,7 +22,7 @@ const ShipingMethod = () => {
   const[state, dispatch] = useReducer(ShippingReducer, initilstate);
   // const[isdisable, setIsdisable] = useState(false)
   const{ setShippingInfo}=useContext(ShippingContext);
-
+const navigate = useNavigate();
   const handleSubmit =(e)=>{
 
     e.preventDefault();
@@ -41,6 +42,18 @@ const ShipingMethod = () => {
     }else if(pincodeCheck.length !==6){
       alert("enter valid pincode")
     }
+
+    const userShippingInfo ={
+      name: state.name,
+      mobile: state.mobile_no,
+      email: state.email,
+      address: state.address,
+      city: state.city,
+      state: state.state,
+      country: state.country,
+      pincode: state.pincode,
+      shipping_method: state.shipping_method
+    }
    
    if (
   emailpattern.test(state.email) &&
@@ -52,9 +65,10 @@ const ShipingMethod = () => {
   state.country !== "" &&
   pincodeCheck.length === 6
 ) {
-    setShippingInfo((prev)=>({...prev , ...state}));
-  setIsdisable(true);
-  // dispatch({ type: "Reset" });
+    setShippingInfo((prev)=>({...prev , ...userShippingInfo}));
+  // setIsdisable(true);
+  navigate('/payment')
+  dispatch({ type: "Reset" });
     // setTimeout(() => dispatch({ type: "Reset" }), 0);
 }
 
@@ -95,7 +109,7 @@ const ShipingMethod = () => {
             <option value="Express">Express</option>
             <option value="Same-Day">Same Day</option>
           </select>
-          <button type='submit' className='shipping-btn'  >PROCEED TO PAYMENT</button>
+        <button type='submit' className='shipping-btn'>PROCEED TO PAYMENT</button>
           </div>
     </form>
     </div>

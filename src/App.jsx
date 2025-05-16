@@ -11,6 +11,7 @@ import men_banner from "./assets/banner_mens.png"
 import women_banner from "./assets/banner_women.png"
 import kid_banner from "./assets/banner_kids.png"
 import ShipingMethod from './Components/ShipingMethod/ShipingMethod'
+import Payment from './Components/Payment/Payment'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Route path='/cart' element={<Cart />}/>
       <Route path='/login' element={<LoginSignup />}/>
       <Route path='/shipping' element = {<ShipingMethod />}></Route>
+      <Route path='/payment' element={<Payment />}></Route>
 
 
     

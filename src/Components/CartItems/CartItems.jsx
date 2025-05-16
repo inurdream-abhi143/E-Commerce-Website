@@ -13,7 +13,7 @@ const CartItems = () => {
 
 
 const discountCodes ={
-   SUMMER10: { type: "percentage", value: 10 },      // 10% off
+  SUMMER10: { type: "percentage", value: 10 },      // 10% off
   FREEDOM50: { type: "flat", value: 50 },           // $50 off
   SPRING20: { type: "percentage", value: 20 },      // 20% off
   SAVE25: { type: "flat", value: 25 },              // $25 off

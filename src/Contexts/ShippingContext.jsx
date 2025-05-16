@@ -4,7 +4,8 @@ const ShippingContext = createContext(null)
 
 
 const ShippingContextProvider = ({children})=>{
-    const[shippingInfo,setShippingInfo] = useState({});
+ const[shippingInfo,setShippingInfo] = useState({});
+
 
 
 const ShippingValue={shippingInfo,setShippingInfo };

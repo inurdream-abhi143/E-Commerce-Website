@@ -2,6 +2,7 @@ import React, { useContext, useState } from 'react'
 import "./CartItems.css"
 import { ShopContext } from '../../Contexts/ShopContext'
 import remove_icon from "../../assets/cart_cross_icon.png"
+import { Link } from 'react-router-dom'
 
 
 const CartItems = () => {
@@ -94,7 +95,7 @@ const addDiscount =(e)=>{
                     <h3>${discountedTotal?discountedTotal:getTotalCartAmount()}</h3>
                 </div>
             </div>
-            <button>PROCEED TO CHEKOUT</button>
+           <Link to='/shipping'> <button>PROCEED TO CHEKOUT</button></Link>
         </div>
         <div className="cartitems-promocode">
             <p>If you have a promo code , Enter here</p>

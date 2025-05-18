@@ -10,8 +10,8 @@ A fully functional e-commerce web app built with ReactJS, Context API, and useRe
 - 🗂️ **Product Categorization** — Filter items by categories (Men, Women, Kids).
 - 🌐 **Routing with React Router** — Seamless page transitions.
 - 💸 **Discount System** — Calculate and apply discount logic.
-- **(Coming Soon)**
 - 📦 **Shipping Method Page** — Capture user details & shipping method.
+- **(Coming Soon)**
 - 💳 **(Planned) Payment Gateway Integration** — Prepare for Stripe/Razorpay connection.
 - 🔍 **Zoom Lens Preview** — Enhance product browsing.
 - ⚙️ **Global State Management** — Powered by Context API + useReducer.

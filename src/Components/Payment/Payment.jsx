@@ -1,12 +1,16 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { ShippingContext } from '../../Contexts/ShippingContext'
 import { ShopContext } from '../../Contexts/ShopContext'
 import "./Payment.css";
 
 const Payment = () => {
+
+  const [paymentMode , setPaymentMode ] = useState("credit-card")
+  const [paymentDone , setPaymentDone] = useState(false)
     const{shippingInfo} =useContext(ShippingContext)
   const {getTotalCartAmount,all_products, cartItems, } = useContext(ShopContext);
 
+  console.log("payment mode",paymentMode);
   console.log("discount", shippingInfo.discount);
     // console.log("my data", shippingInfo);
 
@@ -87,22 +91,40 @@ const TotalAmount = getTotalCartAmount() + getShippingMethod(shippingInfo.shippi
         </div>
        
 </div>
- <button className='payment-button'>Pay Now</button>
+ {/* <button className='payment-button'>Pay Now</button> */}
   <div className="product-paymment">
    <form>
       < div className="paymentmode">
-        <input type='radio' name='payment' value='credit-card' />
+        <input type='radio' name='payment' value="credit-card" onChange={(e)=>{setPaymentMode(e.target.value)}}/>
         <label htmlFor='credit-card'>Credit Card</label>
-        <input type='radio' name='payment' value='cash-on-delivery' />
+        <input type='radio' name='payment' value="cash-on-delivery" onChange={(e)=>{setPaymentMode(e.target.value)}} />
         <label htmlFor='debit-card'>Cash On Delivery</label>
+      </div>
+      {paymentMode ==="credit-card"? (
+        <div className="add-card-info">
+        <div>
+        <label className='card-name' htmlFor='card-number'>Card Number</label>
+        <input className='card-number' type='text' name='card-number' placeholder='Enter Card Number'/>
+        </div>
+        <div className='card-info2'>
+        <label  htmlFor='expiry-date' className='card-name'>Expiry Date   </label>
+        <input className='card-info2-e' type='text' name='expiry-date' />   
+        <label htmlFor='cvv' className='card-name'>CVV </label>
+        <input className='card-info2-e' type='number' name='cvv' placeholder='CVV'/>      
+         </div>
+        <div>
+        <label className='card-name' htmlFor='cardholder-name'>Card Holder Name</label>
+        <input className='card-number' type='text' name='cardholder-nanem' placeholder='Card Holder Name'/>      
+        </div>
+      </div>):null
+      }
+       
+      <div className="paybtn">
+        <button className='payment-button' >Pay Now</button>
       </div>
  </form>
     </div>
   </div>
-  
-
-
-  )
+)
 }
-
 export default Payment

@@ -85,4 +85,55 @@
     border-radius: 15px;
     font-size: 18px;
     font-weight: 600;
+    cursor: pointer;
+}
+
+.add-card-info{
+    display: flex;
+    flex-direction: column;
+    border: 2px solid black;
+    width: 650px;
+    min-height: 200px;
+}
+
+.card-number{
+    width: 75%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+    margin: 10px 15px ;
+    outline: none;
+    background-color: #efefef;
+}
+.card-name{
+    font-size: 20px;
+    font-weight: 600;
+    margin: 10px;
+}
+
+.card-number::placeholder{
+     margin: 0 10px;
+    font-size: 20px;
+    font-weight: 600; 
+}
+
+.card-info2{
+    display: flex;
+    justify-self: space-between;
+    align-items: center;
+  
+}
+.card-info2-e{
+    margin: 5px 20px;
+    padding:0 20px;
+     width: 85px;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 15px;
+     outline: none;
+    background-color: #efefef;
 }

@@ -76,3 +76,43 @@ opacity: 0.8;
 .shipping-btn:disabled{
     opacity: 0.1;
 } */
+ .discount-field{
+    display: flex; 
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+   
+ }
+ .discount-btn{
+    width: 25%;
+    height: 45px;
+    margin: 10px;
+    text-align: center;  
+    border: none;
+    font-size: 18px;
+    font-weight: 700;
+    border-radius: 20px;
+    opacity: 0.4;
+ }
+
+ .discount-btn:hover{
+    background-color: #ef4141;
+    color:whitesmoke;
+    text-transform: capitalize;
+    font-size: 18px;
+    font-weight: 700;
+    border:none;
+    border-radius: 20px;
+    opacity: 0.8;
+ }
+ .discount-field input{
+  width: 70%;
+  padding:0 10px;
+  margin: 0 10px;
+  height: 40px;
+  border: none;
+  background-color: #efefef;
+  border-radius: 15px;
+  font-size: 18px;
+
+ }

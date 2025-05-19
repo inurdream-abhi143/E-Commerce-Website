@@ -1,10 +1,15 @@
 import React, { useContext, useReducer, useState } from 'react'
 import "./ShipingMethod.css"
 import{ShippingReducer}from "../Reducer/ShippingReducer";
-import { ShippingContext } from '../../Contexts/ShippingContext';
-import { Link, useNavigate } from 'react-router-dom';
+import { ShippingContext  } from '../../Contexts/ShippingContext';
+import { useNavigate } from 'react-router-dom';
+import { ShopContext } from '../../Contexts/ShopContext';
 
 const ShipingMethod = () => {
+      const [discountedAmount, setDiscountedAmount] = useState(0);
+    const [promoCode, setPromoCode] = useState("");
+    const {getTotalCartAmount } = useContext(ShopContext);
+    
   const initilstate = {
     name: "",
     mobile_no : 0,
@@ -23,6 +28,46 @@ const ShipingMethod = () => {
   // const[isdisable, setIsdisable] = useState(false)
   const{ setShippingInfo}=useContext(ShippingContext);
 const navigate = useNavigate();
+
+
+
+// discount function here 
+
+
+const discountCodes ={
+  SUMMER10: { type: "percentage", value: 10 },      // 10% off
+  FREEDOM50: { type: "flat", value: 50 },           // $50 off
+  SPRING20: { type: "percentage", value: 20 },      // 20% off
+  SAVE25: { type: "flat", value: 25 },              // $25 off
+  WELCOME15: { type: "percentage", value: 15 },     // 15% off for newbies
+  HOLIDAY100: { type: "flat", value: 100 },         // $100 off for the holidays
+  FLASH5: { type: "flat", value: 5 },                // $5 off flash sale
+  VIP30: { type: "percentage", value: 30 }, 
+
+};
+const addDiscount =(e)=>{
+ e.preventDefault();
+     if(discountCodes[promoCode]){
+      if(discountCodes[promoCode].type ==="percentage"){
+     const price = getTotalCartAmount();
+      const discount_price = price * (1-discountCodes[promoCode].value/100);
+      const discountAmount = price - discount_price;
+      alert(`You got ${discountCodes[promoCode].value}% off`);
+      //  console.log("discountPrice",discount_price);
+      setDiscountedAmount(discountAmount);
+  }else if(discountCodes[promoCode].type ==="flat"){
+        const price = getTotalCartAmount();
+        const discount_price = price- discountCodes[promoCode].value
+        const discountAmount = price - discount_price;
+        alert(`You got $${discountCodes[promoCode].value} off`);
+        // console.log("discounted_price",discount_price);
+        setDiscountedAmount(discountAmount);
+        
+      }else{
+        alert("Invalid Coupon Code");
+      }
+    }}
+
   const handleSubmit =(e)=>{
 
     e.preventDefault();
@@ -52,9 +97,11 @@ const navigate = useNavigate();
       state: state.state,
       country: state.country,
       pincode: state.pincode,
-      shipping_method: state.shipping_method
+      shipping_method: state.shipping_method,
+      discount: discountedAmount
     }
    
+
    if (
   emailpattern.test(state.email) &&
   namepattern.test(state.name) &&
@@ -104,12 +151,21 @@ const navigate = useNavigate();
           </div>
           <div  className='shiping-method'>
           <label className='label' htmlFor='ship-method'>Shipping Method</label>
-            <select  className='input-field' name='ship-method' value={state.shipping_method}  onChange={(e)=>dispatch({type:"shipping-method",payload: e.target.value})}>--Select--
-            <option value="Standered">Standard</option>
+            <select  className='input-field' name='ship-method' value={state.shipping_method}  onChange={(e)=>dispatch({type:"shipping-method",payload: e.target.value})}>
+            <option value="Standard">Standard</option>
             <option value="Express">Express</option>
-            <option value="Same-Day">Same Day</option>
+            <option value="Same-Day">Same-Day</option>
           </select>
-        <button type='submit' className='shipping-btn'>PROCEED TO PAYMENT</button>
+           {/* discount section here  */}
+
+            <p className='label'>If you have a promo code , Enter here</p>
+            <div className="discount-field">
+                <input type='text'  placeholder='Promo Code' 
+                value={promoCode}
+                onChange={(e)=>{setPromoCode(e.target.value)}}/>
+                <button className='discount-btn' onClick={(e)=>{addDiscount(e)}}>Submit</button>
+           </div>
+                 <button type='submit' className='shipping-btn'>PROCEED TO PAYMENT</button>
           </div>
     </form>
     </div>

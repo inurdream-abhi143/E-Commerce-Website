@@ -6,7 +6,7 @@ import "./Payment.css";
 const Payment = () => {
 
   const [paymentMode , setPaymentMode ] = useState("credit-card")
-  const [paymentDone , setPaymentDone] = useState(false)
+  // const [paymentDone , setPaymentDone] = useState(false)
     const{shippingInfo} =useContext(ShippingContext)
   const {getTotalCartAmount,all_products, cartItems, } = useContext(ShopContext);
 

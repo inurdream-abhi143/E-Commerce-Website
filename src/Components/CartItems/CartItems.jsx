@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import "./CartItems.css"
 import { ShopContext } from '../../Contexts/ShopContext'
 
-import remove_icon from "../../assets/cart_cross_icon.png"
+import remove_icon from "../assets/cart_cross_icon.png"
 import { Link } from 'react-router-dom'
 
 

@@ -1,5 +1,5 @@
 import React, { createContext, useState } from "react";  
-import all_products from "../assets/all_product"
+import all_products from "../Components/assets/all_product"
 
 export const ShopContext = createContext(null)
 

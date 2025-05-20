@@ -1,6 +1,6 @@
 import React from 'react'
 import "./Breadcrum.css"
-import arrow_icon from '../../assets/breadcrum_arrow.png'
+import arrow_icon from '../assets/breadcrum_arrow.png'
 const Breadcrum = (props) => {
   const{product} = props;
   return (

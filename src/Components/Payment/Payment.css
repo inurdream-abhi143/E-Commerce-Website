@@ -1,139 +1,177 @@
-.payment{
-    margin: 15px;
-    padding: 15px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.payment {
+  margin: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
-.userinfo{
-    display: flex;
-    flex-direction: column;
-     margin: 20px;
-    padding: 10px;
-    
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+  padding: 10px;
 }
 
-.userinfo p{
-   font-weight: 600;
-    font-size: 20px;
-    color: dimgrey;
-   margin: 5px;
+.userinfo p {
+  font-weight: 600;
+  font-size: 20px;
+  color: dimgrey;
+  margin: 5px;
 }
-.price-info{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    margin: 20px;
-    padding: 10px;
+.price-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin: 20px;
+  padding: 10px;
 }
-.price-info-total{
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
+.price-info-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
 }
 
 /*  */
 
-.shipping-format-main{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    align-items: center;  
-    gap: 75px;
-    padding: 20px 0px;
-    color: #454545;
-    font-size: 18px;
-    font-weight: 600;
-     margin: 20px;
-    padding: 10px;
+.shipping-format-main {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  align-items: center;
+  gap: 75px;
+  padding: 20px 0px;
+  color: #454545;
+  font-size: 18px;
+  font-weight: 600;
+  margin: 20px;
+  padding: 10px;
 }
 
 .shipping-format {
- font-size: 17px;
- font-weight: 500;
+  font-size: 17px;
+  font-weight: 500;
 }
 
 /* .carticon-product-icon{
     height: 62px;
 } */
 
-
-
-.shipping-quantity{
-    width: 64px;
-    height: 50px;
-    border: 2px solid #ebebeb;
-    background-color: #fff;
+.shipping-quantity {
+  width: 64px;
+  height: 50px;
+  border: 2px solid #ebebeb;
+  background-color: #fff;
 }
-.hr{
-     height: 3px;
-    background-color: #e2e2e2;
-    border: 0;
+.hr {
+  height: 3px;
+  background-color: #e2e2e2;
+  border: 0;
 }
-.product-name{
-    font-size: 18px;
+.product-name {
+  font-size: 18px;
 }
 
-.payment-button{
-    margin: 20px;
-    padding: 10px;
-    width: 120px;
-    height: 45px;
-    background-color: #f0c14b;
-    border-radius: 5px;
-    text-align: center;
-    border: none;
-    border-radius: 15px;
-    font-size: 18px;
-    font-weight: 600;
-    cursor: pointer;
+.paymentmode {
+  display: flex;
+  align-items: center;
+  margin: 0 20px;
+  padding: 0 10px;
+}
+.paymentmode input {
+  font-size: 30px;
+  font-weight: 600;
+  color: dimgrey;
+}
+.paymentmethod {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+.payment-button {
+  margin: 20px;
+  padding: 10px;
+  width: 120px;
+  height: 45px;
+  background-color: #f0c14b;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
 }
 
-.add-card-info{
-    display: flex;
-    flex-direction: column;
-    border: 2px solid black;
-    width: 650px;
-    min-height: 200px;
+.add-card-info {
+  margin: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid black;
+  width: 600px;
+  min-height: 200px;
 }
 
-.card-number{
-    width: 75%;
-    height: 40px;
-    font-size: 20px;
-    font-weight: 600;
-    border: none;
-    border-radius: 15px;
-    margin: 10px 15px ;
-    outline: none;
-    background-color: #efefef;
+.card-number {
+  width: 95%;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  margin: 10px 15px;
+  outline: none;
+  background-color: #efefef;
 }
-.card-name{
-    font-size: 20px;
-    font-weight: 600;
-    margin: 10px;
+.card-number::placeholder {
+  padding: 0 10px;
 }
-
-.card-number::placeholder{
-     margin: 0 10px;
-    font-size: 20px;
-    font-weight: 600; 
+.card-name {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
 }
 
-.card-info2{
-    display: flex;
-    justify-self: space-between;
-    align-items: center;
-  
+.card-number::placeholder {
+  margin: 0 10px;
+  font-size: 20px;
+  font-weight: 600;
 }
-.card-info2-e{
-    margin: 5px 20px;
-    padding:0 20px;
-     width: 85px;
-    height: 40px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 15px;
-     outline: none;
-    background-color: #efefef;
+
+.card-info2 {
+  display: flex;
+  justify-self: space-between;
+  align-items: center;
+}
+.card-info2-e {
+  margin: 5px 20px;
+  padding: 0 20px;
+  width: 80px;
+  height: 50px;
+  font-size: 16px;
+  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: #efefef;
+}
+.error {
+  color: red;
+  font-size: 0.85rem;
+  margin-top: 4px;
+  font-weight: 500;
+}
+.is-invalid {
+  border: 2px solid red;
+  background-color: #ffe6e6;
+}
+.errorn {
+  color: red;
+  font-size: 1rem;
+  margin-top: 4px;
+  font-weight: 500;
+  margin: 5px 20px;
+  padding: 0 10px;
 }

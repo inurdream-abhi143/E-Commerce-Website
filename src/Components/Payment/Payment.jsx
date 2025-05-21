@@ -1,13 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
 import "./Payment.css";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 const Payment = () => {
   // const [paymentMode , setPaymentMode ] = useState("credit-card")
 
   // const [paymentDone , setPaymentDone] = useState(false)
+  const navigate = useNavigate();
   const { shippingInfo } = useContext(ShippingContext);
   const { getTotalCartAmount, all_products, cartItems } =
     useContext(ShopContext);
@@ -31,7 +33,9 @@ const Payment = () => {
   console.log("discount", shippingInfo.discount);
   // console.log("my data", shippingInfo);
 
-  const customerAddress = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}`;
+  const customerAddress =
+    `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}` ||
+    "";
   const customerPhone = shippingInfo.mobile;
   const customerEmail = shippingInfo.email;
 
@@ -54,6 +58,11 @@ const Payment = () => {
 
   const onSubmit = (data) => {
     console.log("my data", data);
+    if (paymentMode === "credit-card") {
+      alert("Payment Successful");
+    } else if (paymentMode === "cash-on-delivery") {
+      navigate("/confirmorder");
+    }
   };
   return (
     <div className="payment">
@@ -113,12 +122,12 @@ const Payment = () => {
         </div>
         <div className="price-info-total">
           <p>Discount</p>
-          <h3>${shippingInfo.discount ? shippingInfo.discount : 0}</h3>
+          <h3>${shippingInfo.discount || 0}</h3>
         </div>
         <hr className="hr" />
         <div className="price-info-total">
           <p>Total Amount </p>
-          <h3>${TotalAmount ? TotalAmount : 0}</h3>
+          <h3>${TotalAmount || 0}</h3>
         </div>
       </div>
       {/* <button className='payment-button'>Pay Now</button> */}

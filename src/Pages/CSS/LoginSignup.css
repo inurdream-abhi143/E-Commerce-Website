@@ -38,7 +38,7 @@
 .loginsignup-fields input::placeholder{
     font-size: 18px;
 }
-.loginsignup-container button{
+.loginsignup-container .button{
     width: 580px;
     height: 72px;
     color: white;

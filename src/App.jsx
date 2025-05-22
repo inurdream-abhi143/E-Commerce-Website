@@ -13,6 +13,7 @@ import kid_banner from "./Components/assets/banner_kids.png";
 import ShipingMethod from "./Components/ShipingMethod/ShipingMethod";
 import Payment from "./Components/Payment/Payment";
 import ConfirmOrder from "./Components/Confirmorder/ConfirmOrder";
+import OrderFail from "./Components/OrderFail/OrderFail";
 
 function App() {
   return (
@@ -42,6 +43,7 @@ function App() {
             <Route path="/shipping" element={<ShipingMethod />}></Route>
             <Route path="/payment" element={<Payment />}></Route>
             <Route path="/confirmorder" element={<ConfirmOrder />}></Route>
+            <Route path="/orderfail" element={<OrderFail />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

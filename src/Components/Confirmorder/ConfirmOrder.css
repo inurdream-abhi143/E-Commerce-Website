@@ -118,3 +118,22 @@
   text-align: center;
   align-self: center;
 }
+.order-failbtn {
+  width: 150px;
+  height: 40px;
+  background-color: #eb863e;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  text-align: center;
+  align-self: center;
+}
+
+.order-failbtn1 {
+  align-self: center;
+  margin: 15px 0;
+  padding: 10px 0;
+}

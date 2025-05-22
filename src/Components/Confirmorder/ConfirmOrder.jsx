@@ -4,7 +4,7 @@ import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
 import { saveOrderToLocalStorage } from "../../Utils/Storage";
 import "./ConfirmOrder.css";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
@@ -81,10 +81,7 @@ const ConfirmOrder = () => {
             {" "}
             Name:<span>{shippingInfo.name}</span>
           </p>
-          <p>
-            {" "}
-            Address: <span>{customerAddress ? customerAddress : ""}</span>
-          </p>
+
           <p>
             Mobile No: <span>{customerPhone}</span>
           </p>
@@ -93,6 +90,13 @@ const ConfirmOrder = () => {
           </p>
         </div>
         <div className="shippingdetails">
+          <div>
+            <p>
+              {" "}
+              Shipping Address:{" "}
+              <span>{customerAddress ? customerAddress : ""}</span>
+            </p>
+          </div>
           <div>
             <p>
               Shipping Method: <span>{shippingInfo.shipping_method}</span>
@@ -168,6 +172,9 @@ const ConfirmOrder = () => {
         <button className="go-to-home" onClick={handleSaveOrder}>
           Go To Home{" "}
         </button>
+        <Link to="/orderfail" className="order-failbtn1">
+          <button className="order-failbtn">Order-Fail</button>
+        </Link>
       </div>
     </div>
   );

@@ -2,8 +2,9 @@ import React, { useContext } from "react";
 import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
 import "./Payment.css";
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { PaymentContext } from "../../Contexts/PaymentContext";
 
 const Payment = () => {
   // const [paymentMode , setPaymentMode ] = useState("credit-card")
@@ -11,6 +12,8 @@ const Payment = () => {
   // const [paymentDone , setPaymentDone] = useState(false)
   const navigate = useNavigate();
   const { shippingInfo } = useContext(ShippingContext);
+  // initialize the payment context
+  const { setPaymentInfo } = useContext(PaymentContext);
   const { getTotalCartAmount, all_products, cartItems } =
     useContext(ShopContext);
   const {
@@ -55,14 +58,29 @@ const Payment = () => {
     getTotalCartAmount() +
     getShippingMethod(shippingInfo.shipping_method) -
     shippingInfo.discount;
-
+  const ShippingCost = getShippingMethod(shippingInfo.shipping_method);
   const onSubmit = (data) => {
     console.log("my data", data);
-    if (paymentMode === "credit-card") {
-      alert("Payment Successful");
-    } else if (paymentMode === "cash-on-delivery") {
-      navigate("/confirmorder");
+    if (paymentMode === "credit-card" || paymentMode === "cash-on-delivery") {
+      // alert("Payment Successful");
+
+      const date = new Date();
+      const currentDate = date.toLocaleDateString();
+      const paymentData = {
+        paymentMode: data.payment,
+        cardnumber: data.cardnumber,
+        cardholdername: data.cardholdername,
+        paymentDate: currentDate,
+        shippingCost: ShippingCost,
+        discount: shippingInfo.discount,
+      };
+      setPaymentInfo(paymentData);
+      console.log("payment data", paymentData);
+    } else {
+      alert("Please select a payment method");
     }
+
+    navigate("/confirmorder");
   };
   return (
     <div className="payment">
@@ -118,7 +136,7 @@ const Payment = () => {
         </div>
         <div className="price-info-total">
           <p>Shipping Fee</p>
-          <h3>${getShippingMethod(shippingInfo.shipping_method)}</h3>
+          <h3>${ShippingCost}</h3>
         </div>
         <div className="price-info-total">
           <p>Discount</p>

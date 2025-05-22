@@ -6,15 +6,20 @@ A fully functional e-commerce web app built with ReactJS, Context API, and useRe
 
 ## 🚀 Features
 
-- 🛒 **Cart Functionality** — Add/remove items, adjust quantity, see total.
+- 🛒 **Cart Functionality** — Add/remove items, adjust quantity, see total price.
 - 🗂️ **Product Categorization** — Filter items by categories (Men, Women, Kids).
 - 🌐 **Routing with React Router** — Seamless page transitions.
 - 💸 **Discount System** — Calculate and apply discount logic.
 - 📦 **Shipping Method Page** — Capture user details & shipping method.
-- **(Coming Soon)**
 - 💳 **(Planned) Payment Gateway Integration** — Prepare for Stripe/Razorpay connection.
-- 🔍 **Zoom Lens Preview** — Enhance product browsing.
+- 🔍 **Zoom Lens Preview** — Enhance product browsing (coming soon).
 - ⚙️ **Global State Management** — Powered by Context API + useReducer.
+- 🧾 **Order Confirmation** — Detailed order summary after payment.
+- 💾 **Local Storage Integration** — Orders are saved locally for demo purposes.
+- 🛠️ **Simple CSS Styling** — Custom look with vanilla CSS.
+- 🛂 **Login Page** — Placeholder for future authentication.
+- 🧮 **Invoice & Price Calculation** — Subtotals, shipping, discounts, and totals are calculated live.
+- 🛍️ **Visual Cart Page** — View, update, and remove products visually.
 
 ---
 
@@ -41,9 +46,14 @@ E-commerce/
 │   │   ├── Navbar/
 │   │   ├── Cart/
 │   │   ├── Items/
-│   │   └── ShipingMethod/
+│   │   ├── CartItems/
+│   │   ├── Payment/
+│   │   ├── Confirmorder/
+│   │   ├── ShipingMethod/
 │   ├── Contexts/
-│   │   └── ShopContext.jsx
+│   │   ├── ShopContext.jsx
+│   │   ├── ShippingContext.jsx
+│   │   └── PaymentContext.jsx
 │   ├── Pages/
 │   │   ├── Home.jsx
 │   │   ├── Cart.jsx
@@ -60,28 +70,51 @@ E-commerce/
 
 1. **Clone the repository**
 
-   git clone https://github.com/your-username/E-commerce.git
+   ```bash
+   git clone https://github.com/inurdream-abhi143/E-Commerce-Website.git
+   ```
 
 2. **Install dependencies**
 
+   ```bash
    npm install
+   ```
 
 3. **Run the development server**
 
+   ```bash
    npm run dev
+   ```
 
 4. **Open in Browser**
 
-   http://localhost:5173
+   Visit: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## 📦 Core Modules & Flow
+
+- **Shop**: Home and category pages display all products. Filter by Men, Women, Kids.
+- **Cart**: Add/remove/update items; see totals, discounts, and proceed to checkout.
+- **Shipping**: Enter user details and select shipping method (Standard, Express, Same-Day).
+- **Payment**: Choose payment mode (Credit Card/Cash on Delivery), input card details, see order cost breakdown.
+- **Order Confirmation**: See full order summary and user/shipping/payment info. Orders are saved in browser local storage for demo.
 
 ---
 
 ## 🔮 Upcoming Features
 
 - 🔍 Product Image Zoom Lens
-- 💳 Payment Gateway Integration
+- 💳 Payment Gateway Integration (Stripe/Razorpay)
 - 🧾 Invoice/Order Summary Page
 - 🌈 Dark Mode Toggle
+- 🔒 User Authentication & Registration
+
+---
+
+## 👏 Contributing
+
+Contributions, suggestions, and improvements are welcome! If you'd like to add features or fix bugs, feel free to fork the repo, open a pull request, or create an issue.
 
 ---
 

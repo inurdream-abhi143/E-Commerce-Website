@@ -33,7 +33,7 @@ const Payment = () => {
   const paymentMode = watch("payment", "credit-card");
 
   // console.log("payment mode",paymentMode);
-  console.log("discount", shippingInfo.discount);
+  // console.log("discount", shippingInfo.discount);
   // console.log("my data", shippingInfo);
 
   const customerAddress =
@@ -60,7 +60,7 @@ const Payment = () => {
     shippingInfo.discount;
   const ShippingCost = getShippingMethod(shippingInfo.shipping_method);
   const onSubmit = (data) => {
-    console.log("my data", data);
+    // console.log("my data", data);
     if (paymentMode === "credit-card" || paymentMode === "cash-on-delivery") {
       // alert("Payment Successful");
 
@@ -75,7 +75,7 @@ const Payment = () => {
         discount: shippingInfo.discount,
       };
       setPaymentInfo(paymentData);
-      console.log("payment data", paymentData);
+      // console.log("payment data", paymentData);
     } else {
       alert("Please select a payment method");
     }

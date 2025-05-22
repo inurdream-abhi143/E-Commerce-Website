@@ -2,19 +2,24 @@ import React, { useContext } from "react";
 import { PaymentContext } from "../../Contexts/PaymentContext";
 import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
-import { get } from "react-hook-form";
+import { saveOrderToLocalStorage } from "../../Utils/Storage";
 import "./ConfirmOrder.css";
+import { useNavigate } from "react-router-dom";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
   const { getTotalCartAmount, all_products, cartItems } =
     useContext(ShopContext);
   const { shippingInfo } = useContext(ShippingContext);
-  console.log("payment info-c", paymentInfo);
+  // console.log("payment info-c", paymentInfo);
+
   const CardNumber = paymentInfo.cardnumber;
-  console.log("CardNumber", CardNumber);
+  // console.log("CardNumber", CardNumber);
   const maskCardNumber =
-    "*".repeat(CardNumber.length - 4) + CardNumber.slice(-4);
+    paymentInfo.paymentMode === "credit-card"
+      ? "*".repeat(CardNumber.length - 4) + CardNumber.slice(-4)
+      : "";
+
   //   Total amount calculation
   const totalAmount =
     getTotalCartAmount() + paymentInfo.shippingCost - paymentInfo.discount;
@@ -22,7 +27,51 @@ const ConfirmOrder = () => {
   const customerEmail = shippingInfo.email;
   const customerAddress = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}`;
 
-  console.log("totalAmount", totalAmount);
+  // console.log("totalAmount", totalAmount);
+
+  // To Save order in local storage
+  const navigate = useNavigate();
+  const handleSaveOrder = (e) => {
+    e.preventDefault();
+    const orderDetails = {
+      customer: {
+        name: shippingInfo.name,
+        email: customerEmail,
+        phone: customerPhone,
+        address: customerAddress,
+      },
+      shippingInfo: {
+        shippingMethod: shippingInfo.shipping_method,
+        shippingCost: paymentInfo.shippingCost,
+      },
+      paymentInfo: {
+        paymentMode: paymentInfo.paymentMode,
+        ...(paymentInfo.paymentMode === "credit-card" && {
+          cardNumber: paymentInfo.cardnumber,
+        }),
+        paymentDate: paymentInfo.paymentDate,
+      },
+      products: all_products
+        .filter((e) => cartItems[e.id] > 0)
+        .map((e) => ({
+          name: e.name,
+          price: e.new_price,
+          quantity: cartItems[e.id],
+          subPrice: e.new_price * cartItems[e.id],
+        })),
+      totals: {
+        subtotal: getTotalCartAmount(),
+        discount: paymentInfo.discount || 0,
+        shippingCost: paymentInfo.shippingCost || 0,
+        totalAmount,
+      },
+      createdAt: new Date().toISOString(),
+    };
+    saveOrderToLocalStorage(orderDetails);
+    // Redirect to home page or perform any other action
+    navigate("/");
+    alert("Order Placed Successfully");
+  };
   return (
     <div className="confirmorder">
       <div className="Order-details">
@@ -57,7 +106,7 @@ const ConfirmOrder = () => {
           </p>
           {paymentInfo.paymentMode === "credit-card" ? (
             <p>
-              card Number: <span>{paymentInfo.cardnumber}</span>
+              Card Number: <span>{maskCardNumber}</span>
             </p>
           ) : null}
           <p>
@@ -65,9 +114,6 @@ const ConfirmOrder = () => {
           </p>
         </div>
 
-        <p>
-          Card Number: <span>{maskCardNumber}</span>
-        </p>
         <div className="productdetails">
           <div className="producttable">
             <table>
@@ -118,6 +164,10 @@ const ConfirmOrder = () => {
             </p>
           </div>
         </div>
+
+        <button className="go-to-home" onClick={handleSaveOrder}>
+          Go To Home{" "}
+        </button>
       </div>
     </div>
   );

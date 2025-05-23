@@ -3,13 +3,15 @@ import "./ProductDisplay.css";
 import star_icon from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
 import { ShopContext } from "../../Contexts/ShopContext";
-import InnerImageZoom from "react-inner-image-zoom";
+// import InnerImageZoom from "react-inner-image-zoom";
 // import "react-inner-image-zoom/lib/styles.css";
-import "./ProductZoom.css"; // Custom CSS for zoom effect
+// import "./ProductZoom.css"; // Custom CSS for zoom effect
+import ReactImageMagnify from "react-image-magnify";
 
 const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
+  const productImage = product.image;
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
@@ -21,14 +23,22 @@ const ProductDisplay = (props) => {
         </div>
         <div className="productdisplay-img">
           {/* <img className="productdisplay-main-img" src={product.image} /> */}
-          <InnerImageZoom
-            className="productdisplay-main-img"
-            src={product.image}
-            zoomSrc={product.image}
-            zoomType="hover"
-            zoomScale={1.5}
-            alt="Product Image"
-          ></InnerImageZoom>
+          <div className="productdisplay-main-img">
+            <ReactImageMagnify
+              {...{
+                smallImage: {
+                  alt: "product image",
+                  isFluidWidth: true,
+                  src: productImage,
+                },
+                largeImage: {
+                  src: productImage,
+                  width: 1000,
+                  height: 900,
+                },
+              }}
+            />
+          </div>
         </div>
       </div>
       <div className="productdisplay-right">

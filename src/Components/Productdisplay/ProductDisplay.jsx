@@ -3,9 +3,6 @@ import "./ProductDisplay.css";
 import star_icon from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
 import { ShopContext } from "../../Contexts/ShopContext";
-// import InnerImageZoom from "react-inner-image-zoom";
-// import "react-inner-image-zoom/lib/styles.css";
-// import "./ProductZoom.css"; // Custom CSS for zoom effect
 import ReactImageMagnify from "react-image-magnify";
 
 const ProductDisplay = (props) => {
@@ -33,8 +30,8 @@ const ProductDisplay = (props) => {
                 },
                 largeImage: {
                   src: productImage,
-                  width: 1000,
-                  height: 900,
+                  width: 1200,
+                  height: 1600,
                 },
               }}
             />

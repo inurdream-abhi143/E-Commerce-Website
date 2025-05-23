@@ -16,7 +16,8 @@
     "react-hook-form": "^7.56.4",
     "react-image-magnify": "^2.7.4",
     "react-inner-image-zoom": "^4.0.1",
-    "react-router-dom": "^7.5.3"
+    "react-router-dom": "^7.5.3",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.25.0",

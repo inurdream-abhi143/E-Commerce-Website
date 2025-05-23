@@ -286,7 +286,7 @@ const Payment = () => {
 
           <div className="paybtn">
             <button type="submit" className="payment-button">
-              Pay Now
+              {paymentMode === "credit-card" ? "Pay Now" : "Place Order"}
             </button>
           </div>
         </form>

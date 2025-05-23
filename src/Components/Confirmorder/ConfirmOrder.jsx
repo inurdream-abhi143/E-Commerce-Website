@@ -5,6 +5,7 @@ import { ShopContext } from "../../Contexts/ShopContext";
 import { saveOrderToLocalStorage } from "../../Utils/Storage";
 import "./ConfirmOrder.css";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
@@ -69,8 +70,9 @@ const ConfirmOrder = () => {
     };
     saveOrderToLocalStorage(orderDetails);
     // Redirect to home page or perform any other action
+
+    toast("Order Placed Successfully");
     navigate("/");
-    alert("Order Placed Successfully");
   };
   return (
     <div className="confirmorder">

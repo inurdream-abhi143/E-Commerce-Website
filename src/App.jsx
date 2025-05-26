@@ -14,6 +14,8 @@ import ShipingMethod from "./Components/ShipingMethod/ShipingMethod";
 import Payment from "./Components/Payment/Payment";
 import ConfirmOrder from "./Components/Confirmorder/ConfirmOrder";
 import OrderFail from "./Components/OrderFail/OrderFail";
+import Login from "./Components/LoginSignPages/Login";
+import Signup from "./Components/LoginSignPages/Signup";
 
 function App() {
   return (
@@ -39,11 +41,12 @@ function App() {
               <Route path=":productId" element={<Product />} />
             </Route>
             <Route path="/cart" element={<Cart />} />
-            <Route path="/login" element={<LoginSignup />} />
             <Route path="/shipping" element={<ShipingMethod />}></Route>
             <Route path="/payment" element={<Payment />}></Route>
             <Route path="/confirmorder" element={<ConfirmOrder />}></Route>
             <Route path="/orderfail" element={<OrderFail />}></Route>
+            <Route path="/login" element={<Login />}></Route>
+            <Route path="/signup" element={<Signup />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

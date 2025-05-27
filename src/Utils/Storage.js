@@ -4,9 +4,10 @@ export const saveOrderToLocalStorage = (orderDetails) => {
   localStorage.setItem("orderDetails", JSON.stringify(updatedOrders));
 };
 
-export const saveUserInfoToLocalStorage = (userInfo) => {
-  const oldUserInfo = JSON.parse(localStorage.getItem("userInfo")) || {};
-  const newUserInfo = { ...oldUserInfo, ...userInfo };
+export const saveUserInfoToLocalStorage = (UserData) => {
+  const oldUserInfo = JSON.parse(localStorage.getItem("UserData")) || {};
 
-  localStorage.setItem("userInfo", JSON.stringify(newUserInfo));
+  const newUserInfo = { ...oldUserInfo, ...UserData };
+
+  localStorage.setItem("UserData", JSON.stringify(newUserInfo));
 };

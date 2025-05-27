@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../Contexts/LoginContext";
+import { saveUserInfoToLocalStorage } from "../../Utils/Storage";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -36,6 +37,7 @@ const Signup = () => {
       };
       setSignupInfo(UserData);
       console.log("UserData", UserData);
+      saveUserInfoToLocalStorage(UserData)
     }
   };
   const handleLoginForm = () => {

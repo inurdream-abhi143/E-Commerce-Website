@@ -6,6 +6,7 @@ import { saveOrderToLocalStorage } from "../../Utils/Storage";
 import "./ConfirmOrder.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
@@ -32,9 +33,13 @@ const ConfirmOrder = () => {
 
   // To Save order in local storage
   const navigate = useNavigate();
+
+  const orderId = Math.floor(1000 + Math.random() * 9000);
+
   const handleSaveOrder = (e) => {
     e.preventDefault();
     const orderDetails = {
+      orderId: orderId,
       customer: {
         name: shippingInfo.name,
         email: customerEmail,

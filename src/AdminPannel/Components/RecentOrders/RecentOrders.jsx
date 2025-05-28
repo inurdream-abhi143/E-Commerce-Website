@@ -20,7 +20,7 @@ const RecentOrders = () => {
             .map((order, i) => {
               return (
                 <tr key={i}>
-                  <td>{i}</td>
+                  <td>{order.orderId}</td>
                   <td>{order.customer.name}</td>
                   <td>{order.paymentInfo.paymentMode}</td>
                   <td>{order.createdAt}</td>

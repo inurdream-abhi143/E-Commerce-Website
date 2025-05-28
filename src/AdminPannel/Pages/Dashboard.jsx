@@ -1,6 +1,7 @@
 import React from "react";
 import "../Styles/Dashboard.css";
 import RecentOrders from "../Components/RecentOrders/RecentOrders";
+import SalesView from "../Components/SalesView/SalesView";
 
 const Dashboard = () => {
   return (
@@ -31,7 +32,7 @@ const Dashboard = () => {
           <RecentOrders />
         </div>
         <div className="container-2-section2">
-          <h1>Chart Visual </h1>
+          <SalesView />
         </div>
       </div>
     </div>

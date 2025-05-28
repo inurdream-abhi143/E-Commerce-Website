@@ -16,6 +16,7 @@ import ConfirmOrder from "./Components/Confirmorder/ConfirmOrder";
 import OrderFail from "./Components/OrderFail/OrderFail";
 import Login from "./Components/LoginSignPages/Login";
 import Signup from "./Components/LoginSignPages/Signup";
+import AdminApp from "./AdminPannel/AdminApp";
 
 function App() {
   return (
@@ -47,6 +48,9 @@ function App() {
             <Route path="/orderfail" element={<OrderFail />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<Signup />}></Route>
+
+            {/* Admin UI Routes */}
+            <Route path="/admin/*" element={<AdminApp />}></Route>
           </Routes>
           <Footer />
         </BrowserRouter>

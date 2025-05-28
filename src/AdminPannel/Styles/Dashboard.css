@@ -1,0 +1,47 @@
+.dashboard {
+  display: flex;
+  flex-direction: column;
+}
+.dashboard .dashboard-name {
+  font-size: 32px;
+  text-align: start;
+  font-weight: 500;
+  margin: 15px;
+  padding: 10px;
+}
+.dashboard-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 15px;
+  padding: 10px;
+}
+.contaier1 {
+  border: 2px solid black;
+  height: 150px;
+  text-align: center;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.value {
+  font-size: 50px;
+  margin: 15px 10px;
+  font-weight: 700;
+}
+
+.container-2 {
+  margin: 30px 15px;
+  padding: 30px 10px;
+  /* width: 100vw; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.container-2-section1 {
+  width: 60%;
+}
+.container-2-section2 {
+  border: 2ps solid black;
+  height: 200px;
+}

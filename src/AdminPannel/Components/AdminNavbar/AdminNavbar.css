@@ -1,0 +1,60 @@
+.adminnavbar {
+  display: flex;
+  height: 100vh;
+  width: 15vw;
+  flex-direction: column;
+  background-color: cadetblue;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.admin-logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  padding: 10px;
+}
+.admin-logo h2 {
+  font-size: 36px;
+  font-weight: 700;
+}
+
+.adminnav-menu ul {
+  margin-top: 35px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+}
+.a {
+  text-decoration: none;
+  color: black;
+}
+.adminnav-link {
+  list-style: none;
+  text-decoration: none;
+  font-size: 20px;
+  cursor: pointer;
+}
+.adminnav-link :hover {
+  font-size: 22px;
+}
+.adminlog-out {
+  display: flex;
+  margin: 25px 0;
+  padding: 15px 0;
+}
+
+.adminlog-out button {
+  width: 120px;
+  height: 50px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 15px;
+  background-color: azure;
+  color: black;
+  font-size: 20px;
+  font-weight: 600;
+}

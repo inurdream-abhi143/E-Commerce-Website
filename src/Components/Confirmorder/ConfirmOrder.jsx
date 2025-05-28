@@ -66,7 +66,7 @@ const ConfirmOrder = () => {
         shippingCost: paymentInfo.shippingCost || 0,
         totalAmount,
       },
-      createdAt: new Date().toISOString(),
+      createdAt: new Date().toLocaleString(),
     };
     saveOrderToLocalStorage(orderDetails);
     // Redirect to home page or perform any other action

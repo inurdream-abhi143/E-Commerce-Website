@@ -8,7 +8,6 @@ import ReactImageMagnify from "react-image-magnify";
 const ProductDisplay = (props) => {
   const { product } = props;
   const { addToCart } = useContext(ShopContext);
-  const productImage = product.image;
   return (
     <div className="productdisplay">
       <div className="productdisplay-left">
@@ -26,10 +25,10 @@ const ProductDisplay = (props) => {
                 smallImage: {
                   alt: "product image",
                   isFluidWidth: true,
-                  src: productImage,
+                  src: product.image,
                 },
                 largeImage: {
-                  src: productImage,
+                  src: product.image,
                   width: 1200,
                   height: 1600,
                 },

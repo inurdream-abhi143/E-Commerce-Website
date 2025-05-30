@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { LoginContext } from "../../Contexts/LoginContext";
-import { saveUserInfoToLocalStorage } from "../../Utils/Storage";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -12,6 +12,7 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
       name: "",
@@ -27,17 +28,27 @@ const Signup = () => {
     if (data.password !== data.Cpassword) {
       alert("Passwords do not match");
       return;
-    } else {
+    } else if (data.termagree !== true) {
+      alert("Click the Check box");
+    }
+    {
       const UserData = {
         name: data.name,
         email: data.email,
         password: data.password,
         confirmPassword: data.Cpassword,
-        termagree: data.agree,
+        termagree: data.termagree,
       };
       setSignupInfo(UserData);
-      console.log("UserData", UserData);
-      saveUserInfoToLocalStorage(UserData)
+
+      // saveUserInfoToLocalStorage(UserData);
+      
+      reset();
+      // navigate("/login");
+      toast.success("Account created! Redirecting to login...");
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
     }
   };
   const handleLoginForm = () => {
@@ -131,7 +142,7 @@ const Signup = () => {
               <div className="error">
                 {errors.Cpassword.type === "required"
                   ? "This Field is required"
-                  : errors.password.message}
+                  : errors.Cpassword.message}
               </div>
             )}
           </div>

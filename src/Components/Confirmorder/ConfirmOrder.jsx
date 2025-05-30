@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
-  const { getTotalCartAmount, all_products, cartItems } =
+  const { getTotalCartAmount, all_products, cartItems, clearCartItem } =
     useContext(ShopContext);
   const { shippingInfo } = useContext(ShippingContext);
   // console.log("payment info-c", paymentInfo);
@@ -77,6 +77,7 @@ const ConfirmOrder = () => {
     // Redirect to home page or perform any other action
 
     toast("Order Placed Successfully");
+    clearCartItem();
     navigate("/");
   };
   return (

@@ -10,7 +10,7 @@ const RecentOrders = () => {
           <tr>
             <th>Order Id</th>
             <th>Customer Name</th>
-            <th>Status</th>
+            <th>Payment Method</th>
             <th>Order Date</th>
           </tr>
         </thead>

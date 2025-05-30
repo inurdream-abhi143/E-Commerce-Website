@@ -4,10 +4,10 @@ export const saveOrderToLocalStorage = (orderDetails) => {
   localStorage.setItem("orderDetails", JSON.stringify(updatedOrders));
 };
 
-export const saveUserInfoToLocalStorage = (UserData) => {
-  const oldUserInfo = JSON.parse(localStorage.getItem("UserData")) || {};
+export const saveUserInfoToLocalStorage = (signupInfo) => {
+  const oldUserInfo = JSON.parse(localStorage.getItem("signupInfo")) || [];
 
-  const newUserInfo = { ...oldUserInfo, ...UserData };
+  const newUserInfo = [...oldUserInfo, signupInfo];
 
-  localStorage.setItem("UserData", JSON.stringify(newUserInfo));
+  localStorage.setItem("signupInfo", JSON.stringify(newUserInfo));
 };

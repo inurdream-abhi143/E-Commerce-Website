@@ -1,29 +1,41 @@
 .dashboard {
   display: flex;
   flex-direction: column;
+  /* color: #f8fafc; */
+  /* background-color: #1e293b; */
+  /* height: 100vh; */
 }
+
 .dashboard .dashboard-name {
-  font-size: 32px;
+  font-size: 48px;
   text-align: start;
-  font-weight: 500;
+  font-weight: 700;
   margin: 15px;
   padding: 10px;
+  color: indigo;
 }
 .dashboard-container {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
   margin: 15px;
   padding: 10px;
 }
 .contaier1 {
   border: 2px solid black;
   height: 150px;
+  width: 250px;
   text-align: center;
   padding: 10px;
   border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  background-color: white;
+  color: indigo;
 }
-
+.contaier1 h1 {
+  font-size: 24px;
+}
 .value {
   font-size: 50px;
   margin: 15px 10px;
@@ -45,4 +57,12 @@
   border: 2ps solid black;
   height: 300px;
   width: 45%;
+}
+
+.icon {
+  font-size: 48px;
+}
+.icon-alert {
+  font-size: 48px;
+  color: red;
 }

@@ -1,14 +1,24 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import { saveUserInfoToLocalStorage } from "../../Utils/Storage";
 
 const Login = () => {
+  const AdminInfo = [
+    {
+      email: "Admin@123gmai.com",
+      password: "Admin@123",
+      adminName: "Abhishek",
+    },
+  ];
+  const signupInfo = JSON.parse(localStorage.getItem("signupInfo"));
   const navigate = useNavigate();
   const {
     register,
     handleSubmit,
     formState: { errors },
     watch,
+    reset,
   } = useForm({
     defaultValues: {
       email: "",
@@ -20,8 +30,42 @@ const Login = () => {
   const handleSignupForm = () => {
     navigate("/signup");
   };
+
   const onSubmit = (data) => {
-    console.log("userLoginData", data);
+    const adminMatch = AdminInfo.find(
+      (admin) => data.email === admin.email && data.password === admin.password
+    );
+
+    if (adminMatch) {
+      navigate("/admin/*");
+      return;
+    }
+
+    const userMatch = signupInfo.find(
+      (user) => data.email === user.email && data.password === user.password
+    );
+
+    if (userMatch) {
+      navigate("/");
+      return;
+    }
+
+    alert("Invalid Email and Password");
+
+    // if (
+    //   data.email === AdminInfo.email &&
+    //   data.password === AdminInfo.password
+    // ) {
+    //   navigate("/admin");
+    // } else if (
+    //   data.email === signupInfo.email &&
+    //   data.password === signupInfo.password
+    // ) {
+    //   navigate("/");
+    // } else {
+    //   alert("Invalid Email and password");
+    // }
+    // console.log("userLoginData", data);
   };
   return (
     <div>

@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./AdminNavbar.css";
+import { RiAdminFill } from "react-icons/ri";
 
 const AdminNavbar = () => {
   return (
     <div className="adminnavbar">
       <div className="admin-logo">
+        <RiAdminFill className="admin-icon" />
         <h2>Admin</h2>
       </div>
       <div className="adminnav-menu">

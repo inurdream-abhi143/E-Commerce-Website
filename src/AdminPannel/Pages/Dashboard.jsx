@@ -8,8 +8,10 @@ import { FaUsers } from "react-icons/fa";
 import { GoAlertFill } from "react-icons/go";
 
 const Dashboard = () => {
+  console.log("Dashboard Page Rendered");
+
   const OrderInfo = JSON.parse(localStorage.getItem("orderDetails"));
-  console.log("order details", OrderInfo);
+  // console.log("order details", OrderInfo);
   const totalOrders = OrderInfo.length||0;
 
   const sales = OrderInfo.map((order) => order.totals.totalAmount);

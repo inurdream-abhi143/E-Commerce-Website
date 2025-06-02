@@ -18,22 +18,22 @@ const AdminNavbar = () => {
             </Link>
           </li>
           <li className=" adminnav-link">
-            <Link className="a" to="/products">
+            <Link className="a" to="products">
               Products
             </Link>
           </li>
           <li className=" adminnav-link">
-            <Link className="a" to="/orders">
+            <Link className="a" to="orders">
               Orders
             </Link>
           </li>
           <li className=" adminnav-link">
-            <Link className="a" to="/customers">
+            <Link className="a" to="customer">
               Customers
             </Link>
           </li>
           <li className=" adminnav-link">
-            <Link className="a" to="/stocks">
+            <Link className="a" to="stocks">
               Stocks
             </Link>
           </li>

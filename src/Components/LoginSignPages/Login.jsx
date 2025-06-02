@@ -37,7 +37,7 @@ const Login = () => {
     );
 
     if (adminMatch) {
-      navigate("/admin/*");
+      navigate("/admin");
       return;
     }
 

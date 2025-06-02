@@ -1,23 +1,31 @@
-import React from "react";
+// AdminApp.jsx
 import { Route, Routes } from "react-router-dom";
-import Dashboard from "./Pages/Dashboard";
 import AdminLayout from "./AdminLayout";
-import Product from "../Pages/Product";
+import Dashboard from "./Pages/Dashboard";
+import Orders from "./Pages/Orders";
+import Stocks from "./Pages/Stocks";
+import AdminProduct from "./Pages/AdminProduct";
+import Customer from "./Pages/Customer";
 
 const AdminApp = () => {
+  console.log("AdminApp Rendered");
   return (
-    <div>
+    <>
       <Routes>
         <Route path="/" element={<AdminLayout />}>
-          <Route index element={<Dashboard />}></Route>
+          <Route index element={<Dashboard />} />
           <Route path="dashboard" element={<Dashboard />} />
-          <Route path="/products" element={<Product />} />
+          <Route path="products" element={<AdminProduct />} />
+          {/* Add more routes as needed */}
+          <Route path="orders" element={<Orders />} />
+          <Route path="stocks" element={<Stocks />} />
+          <Route path="customer" element={<Customer />} />
         </Route>
-        {/* Add more routes as needed */}
-        {/* <Route path="/orders" element={<Orders />} /> */}
-        {/* <Route path="/users" element={<Users />} /> */}
+
+        {/* Optional: catch-all route for unknown admin paths */}
+        <Route path="*" element={<div>Admin Page Not Found</div>} />
       </Routes>
-    </div>
+    </>
   );
 };
 

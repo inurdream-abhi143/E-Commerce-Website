@@ -1,0 +1,137 @@
+.addproducts {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 30px auto;
+  width: 90%;
+}
+
+.addproducts-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid black;
+  background-color: gray;
+  padding: 20px;
+  width: 80%;
+  max-width: 900px;
+}
+
+.addproducts-form h1 {
+  font-size: 32px;
+  font-weight: 600;
+  color: rgb(116, 175, 230);
+  margin-bottom: 30px;
+}
+
+.addproducts-formgrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  width: 100%;
+}
+
+.formgrid-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 15px;
+}
+
+.product-label {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.product-field {
+  width: 80%;
+  background-color: lavender;
+  border: none;
+  height: 40px;
+  border-radius: 15px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 16px;
+}
+
+.submit-btn {
+  background-color: rgb(116, 175, 230);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  grid-column: span 2;
+  justify-self: center;
+  margin-top: 20px;
+}
+
+.submit-btn:hover {
+  background-color: rgb(90, 150, 210);
+}
+.reset-btn {
+  background-color: red;
+  opacity: 0.4;
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 15px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  grid-column: span 2;
+  justify-self: center;
+  margin-top: 20px;
+  margin-left: 20px;
+}
+.reset-btn:hover {
+  opacity: 0.9;
+}
+
+/* Add this to your existing CSS */
+input[type="file"] {
+  width: 100%;
+  background-color: lavender;
+  border: none;
+  height: 40px;
+  border-radius: 15px;
+  outline: none;
+  padding: 8px 15px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Hide the default file input button */
+input[type="file"]::-webkit-file-upload-button {
+  display: none;
+}
+
+/* Style the file input text */
+/* input[type="file"]::before {
+  content: "Choose File";
+  display: inline-block;
+  background: rgb(116, 175, 230);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 8px;
+  margin-right: 10px;
+  cursor: pointer;
+} */
+
+input[type="file"]:hover::before {
+  background: rgb(90, 150, 210);
+}
+
+@media (max-width: 768px) {
+  .addproducts-formgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .submit-btn {
+    grid-column: span 1;
+  }
+}

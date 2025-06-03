@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   const OrderInfo = JSON.parse(localStorage.getItem("orderDetails"));
   // console.log("order details", OrderInfo);
-  const totalOrders = OrderInfo.length||0;
+  const totalOrders = OrderInfo.length || 0;
 
   const sales = OrderInfo.map((order) => order.totals.totalAmount);
 
@@ -26,24 +26,24 @@ const Dashboard = () => {
     <div className="dashboard">
       <h1 className="dashboard-name">Welcome Admin!</h1>
       <div className="dashboard-container">
-        <div className="contaier1">
+        <div className="dashboard-contaier1">
           <FcSalesPerformance className="icon" />
           <h1>Total Sales</h1>
           <p className="value">${totalSales}</p>
         </div>
-        <div className="contaier1">
+        <div className="dashboard-contaier1">
           <RiListUnordered className="icon" />
           <h1>Total Orders</h1>
           <p className="value">{totalOrders}</p>
         </div>
 
-        <div className="contaier1">
+        <div className="dashboard-contaier1">
           <FaUsers className="icon" />
           <h1>Total Customers</h1>
           <p className="value">{0}</p>
         </div>
 
-        <div className="contaier1">
+        <div className="dashboard-contaier1">
           <GoAlertFill className="icon-alert" />
           <h1>Low Stocks Alert</h1>
           <p className="value">{0}</p>

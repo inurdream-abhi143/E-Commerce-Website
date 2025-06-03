@@ -21,24 +21,24 @@
   margin: 15px;
   padding: 10px;
 }
-.contaier1 {
+.dashboard-contaier1 {
   border: 2px solid black;
   height: 150px;
   width: 250px;
   text-align: center;
-  padding: 10px;
+  padding: 5px;
   border-radius: 15px;
   cursor: pointer;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
   background-color: white;
   color: indigo;
 }
-.contaier1 h1 {
+.dashboard-contaier1 h1 {
   font-size: 24px;
 }
-.value {
+.dashboard-contaier1 .value {
   font-size: 50px;
-  margin: 15px 10px;
+  margin: 0 10px;
   font-weight: 700;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .icon {
-  font-size: 48px;
+  font-size: 42px;
 }
 .icon-alert {
   font-size: 48px;

@@ -1,0 +1,120 @@
+.all_Stocks {
+  padding: 20px;
+  overflow-x: auto;
+}
+
+.all_Stocks table {
+  width: 100%;
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin: 20px 0;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.all_Stocks th {
+  background-color: #4ae2c9;
+  color: white;
+  text-align: left;
+  padding: 12px 15px;
+}
+
+.all_Stocks td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #dddddd;
+}
+
+/* .all_Stocks tr:nth-child(even) {
+  background-color: #f3f3f3;
+} */
+
+.all_Stocks td:nth-child(even) {
+  background-color: #dddddd;
+}
+.all_Stocks td:nth-child(odd) {
+  background-color: #e6f2ff;
+}
+.all_Stocks tr:hover {
+  background-color: #e6f2ff;
+}
+
+.all_Stocks thead th {
+  position: sticky;
+  top: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .all_Stocks th,
+  .all_Stocks td {
+    padding: 8px 10px;
+    font-size: 14px;
+  }
+}
+
+/*  */
+
+/* Pagination Container */
+.stocks-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 25px 0;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+/* Base Button Styles */
+.stocks-pagination .pagebtn {
+  padding: 8px 16px;
+  border: 1px solid #4a90e2;
+  background-color: white;
+  color: #4a90e2;
+  cursor: pointer;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  min-width: 40px;
+  text-align: center;
+}
+
+/* Disabled Buttons */
+/* .pagination button:disabled {
+  border-color: #cccccc;
+  color: #cccccc;
+  background-color: #f8f8f8;
+  cursor: not-allowed;
+  transform: none;
+} */
+
+/* Items Per Page Selector */
+.items-per-page {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .stocks-pagination {
+    gap: 5px;
+  }
+
+  .stocks-pagination .pagebtn {
+    padding: 6px 12px;
+    min-width: 32px;
+    font-size: 13px;
+  }
+
+  .items-per-page {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 15px;
+    margin-top: 10px;
+    width: 100%;
+    justify-content: center;
+  }
+}

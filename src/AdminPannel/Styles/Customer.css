@@ -1,0 +1,74 @@
+.customer-info {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80vw;
+  margin: auto;
+}
+
+.customer-table {
+  width: 100%;
+  border: 2px solid black;
+  border-collapse: collapse;
+  margin: 20px 10px;
+  padding: 15px 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.customer-table tr {
+  text-align: left;
+}
+.customer-table th {
+  background-color: #4ae2c9;
+  color: black;
+  text-align: center;
+  padding: 12px 15px;
+  font-size: 22px;
+  text-transform: capitalize;
+}
+.customer-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #251515;
+}
+
+.customer-table td:nth-child(even) {
+  background-color: #dddddd;
+}
+.customer-table td:nth-child(odd) {
+  background-color: #e6f2ff;
+}
+.customer-table tr:hover {
+  background-color: #e6f2ff;
+}
+
+.actionbtns {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.actionbtns button {
+  width: 80px;
+  height: 45px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.viewbtn {
+  background-color: green;
+  color: whitesmoke;
+}
+.editbtn {
+  background-color: blue;
+  color: whitesmoke;
+}
+.banbtn {
+  background-color: red;
+  color: whitesmoke;
+}
+.actionbtns button:hover {
+  opacity: 0.4;
+}

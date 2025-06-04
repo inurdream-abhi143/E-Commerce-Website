@@ -1,0 +1,56 @@
+.customerheader {
+  background-color: gray;
+  width: 99%;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 0 20px;
+}
+.customer-section1 h1 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.customer-section2 {
+  width: 450px;
+  height: 50px;
+  background-color: lightslategray;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.customer-section2 .search-bar {
+  width: 380px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  border-right: 1px solid beige;
+  font-size: 22px;
+  color: white;
+  padding: 0 15px;
+}
+.search-bar::placeholder {
+  margin: 0 20px;
+  font-size: 22px;
+  color: white;
+  padding-right: 10px;
+}
+.customer-section2 .searchbtn {
+  width: 70px;
+  height: 50px;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.search {
+  color: whitesmoke;
+  font-weight: 900;
+  font-size: 26px;
+}

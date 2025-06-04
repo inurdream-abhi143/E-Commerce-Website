@@ -10,9 +10,13 @@ import { GoAlertFill } from "react-icons/go";
 const Dashboard = () => {
   console.log("Dashboard Page Rendered");
 
-  const OrderInfo = JSON.parse(localStorage.getItem("orderDetails"));
+  const OrderInfo = JSON.parse(localStorage.getItem("orderDetails")) || [];
+  const cutomers = JSON.parse(localStorage.getItem("signupInfo")) || [];
+
+  const totalCustomers = cutomers.length;
+  // console.log(totalCustomers);
   // console.log("order details", OrderInfo);
-  const totalOrders = OrderInfo.length || 0;
+  const totalOrders = OrderInfo.length;
 
   const sales = OrderInfo.map((order) => order.totals.totalAmount);
 
@@ -40,7 +44,7 @@ const Dashboard = () => {
         <div className="dashboard-contaier1">
           <FaUsers className="icon" />
           <h1>Total Customers</h1>
-          <p className="value">{0}</p>
+          <p className="value">{totalCustomers}</p>
         </div>
 
         <div className="dashboard-contaier1">

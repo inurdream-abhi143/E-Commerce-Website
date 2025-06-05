@@ -1,16 +1,24 @@
-import React, { useState } from "react";
-import all_product from "../../Components/assets/all_product";
+import React, { useContext, useEffect, useState } from "react";
 import "../Styles/Stocks.css";
 import StockBar from "../Components/StcokBar/StockBar";
-
+import all_product from "../../Components/assets/all_product";
+import { ProductContext } from "../../Contexts/ProductContext";
 const Stocks = () => {
+  // const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 10;
-  const totalPages = Math.ceil(all_product.length / itemsPerPage);
+  const { allProducts } = useContext(ProductContext);
+  // useEffect(() => {
+  //   const storedProducts = getProductFromLocalStorage() || [];
+  //   setProducts(storedProducts);
+  // }, []);
+  // Pagination
+
+  const totalPages = Math.ceil(allProducts.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = all_product.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = allProducts.slice(indexOfFirstItem, indexOfLastItem);
   console.log(`current  page ${currentPage} totalPages${totalPages} `);
 
   const getNextPage = () => {
@@ -27,7 +35,7 @@ const Stocks = () => {
   };
 
   return (
-    <div className="all_Stocks">
+    <div className="container all_Stocks">
       <StockBar />
       <table>
         <thead>
@@ -59,6 +67,7 @@ const Stocks = () => {
                 <td>${product.new_price}</td>
                 <td>${product.old_price}</td>
                 <td>{product.stocks}</td>
+                {/* <td>{product.image}</td> */}
               </tr>
             );
           })}
@@ -75,7 +84,7 @@ const Stocks = () => {
           PREV
         </button>
         <p className="items-per-page">
-          {`  ${currentPage} - ${totalPages} of ${all_product.length} Products  `}
+          {`  ${currentPage} - ${totalPages} of ${allProducts.length} Products  `}
         </p>
         <button
           className="pagebtn"

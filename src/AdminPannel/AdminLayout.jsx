@@ -9,12 +9,14 @@ const AdminLayout = () => {
   console.log("AdminLayout rendered at:", location.pathname);
 
   return (
-    <div style={{ display: "flex", height: "100vh" }}>
-      <div style={{ width: "220px", backgroundColor: "#f4f4f4" }}>
-        <AdminNavbar />
-      </div>
-      <div style={{ flex: 1, padding: "20px", overflowY: "auto" }}>
-        <Outlet />
+    <div className="container-fluid" style={{ minHeight: "100vh" }}>
+      <div className="row">
+        <div className="col-2">
+          <AdminNavbar />
+        </div>
+        <div className="col-10">
+          <Outlet />
+        </div>
       </div>
     </div>
   );

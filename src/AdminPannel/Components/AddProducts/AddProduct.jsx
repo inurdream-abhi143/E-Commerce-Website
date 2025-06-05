@@ -1,15 +1,18 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./AddProdcut.css";
-import all_product from "../../../Components/assets/all_product";
 import { useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { ProductContext } from "../../../Contexts/ProductContext";
+// import { MdDescription } from "react-icons/md";
 
 const AddProduct = () => {
-  const [product, setProduct] = useState([]);
-  let AllProducts = [];
+  const { allProducts, setAllProducts } = useContext(ProductContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     defaultValues: {
       productName: "",
@@ -23,19 +26,37 @@ const AddProduct = () => {
   });
 
   const onSubmit = (data) => {
-    const new_product = {
-      id: all_product.length + 1,
-      name: data.productName,
-      category: data.productCategory,
-      image: data.productImage,
-      new_price: data.productDiscountPrice,
-      old_price: data.productPrice,
+    const file = data.productImage[0];
+    if (!file) {
+      toast.warn("Please select the Product Image ");
+      return;
+    }
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const base64Image = reader.result;
+      const new_product = {
+        id: allProducts.length + 1,
+        name: data.productName,
+        category: data.productCategory,
+        image: base64Image,
+        new_price: data.productDiscountPrice,
+        description: data.productDescription,
+        stocks: data.productStocks,
+        old_price: data.productPrice,
+      };
+
+      // console.log(data);
+      const updatedProduct = [...allProducts, new_product];
+      setAllProducts(updatedProduct);
+      toast.success("Product added successfully!");
+
+      reset();
     };
-    setProduct(new_product);
-    // console.log(data);
-    AllProducts = [...all_product, product];
-    console.log(AllProducts);
+    console.log(allProducts);
+    reader.readAsDataURL(file);
   };
+
   return (
     <div className="addproducts">
       <div className="addproducts-form">
@@ -172,7 +193,15 @@ const AddProduct = () => {
 
           <div className="formgrid-group-btn" style={{ marginTop: "20px" }}>
             <input type="submit" className="submit-btn" />
-            <input type="reset" className="reset-btn" />
+            <button
+              type="button"
+              className="reset-btn"
+              onClick={() => {
+                reset();
+              }}
+            >
+              Reset
+            </button>
           </div>
         </form>
       </div>

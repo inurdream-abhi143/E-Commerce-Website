@@ -1,24 +1,24 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../Styles/Stocks.css";
 import StockBar from "../Components/StcokBar/StockBar";
-import all_product from "../../Components/assets/all_product";
-import { ProductContext } from "../../Contexts/ProductContext";
+// import all_product from "../../Components/assets/all_product";
+// import { ProductContext } from "../../Contexts/ProductContext";
 const Stocks = () => {
   // const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
   const [currentPage, setCurrentPage] = useState(1);
+  const [products, setProducts] = useState([]);
   const itemsPerPage = 10;
-  const { allProducts } = useContext(ProductContext);
-  // useEffect(() => {
-  //   const storedProducts = getProductFromLocalStorage() || [];
-  //   setProducts(storedProducts);
-  // }, []);
+  // const { allProducts } = useContext(ProductContext);
+  useEffect(() => {
+    productList();
+  }, []);
   // Pagination
 
-  const totalPages = Math.ceil(allProducts.length / itemsPerPage);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = allProducts.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
   console.log(`current  page ${currentPage} totalPages${totalPages} `);
 
   const getNextPage = () => {
@@ -34,6 +34,13 @@ const Stocks = () => {
     }
   };
 
+  const productList = () => {
+    fetch("http://localhost:4000/products")
+      .then((res) => res.json())
+      .then((data) => setProducts(data));
+    // .then(console.log);
+  };
+
   return (
     <div className="container all_Stocks">
       <StockBar />
@@ -43,6 +50,7 @@ const Stocks = () => {
             {" "}
             {/* Added missing tr tag */}
             <th>Sr.No</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Category</th>
             <th>Description</th> {/* Fixed spelling */}
@@ -60,12 +68,20 @@ const Stocks = () => {
                 {" "}
                 {/* Added key prop */}
                 <td>{itemNumber}</td> {/* Fixed sequential numbering */}
+                <td>
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{ width: "50px" }}
+                    className="image-fluid rounded-circle"
+                  />
+                </td>
                 <td>{product.name}</td>
                 <td>{product.category}</td>
                 <td>{product.description || "N/A"}</td>{" "}
                 {/* Changed from image to description */}
-                <td>${product.new_price}</td>
                 <td>${product.old_price}</td>
+                <td>${product.new_price}</td>
                 <td>{product.stocks}</td>
                 {/* <td>{product.image}</td> */}
               </tr>
@@ -84,7 +100,7 @@ const Stocks = () => {
           PREV
         </button>
         <p className="items-per-page">
-          {`  ${currentPage} - ${totalPages} of ${allProducts.length} Products  `}
+          {`  ${currentPage} - ${totalPages} of ${products.length} Products  `}
         </p>
         <button
           className="pagebtn"

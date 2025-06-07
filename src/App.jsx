@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PublicRoute from "./PublicRoute";
 import AdminRoutes from "./AdminRoutes";
 
+
 function App() {
   console.log("App Rendered");
 

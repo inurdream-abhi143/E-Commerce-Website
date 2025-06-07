@@ -16,7 +16,7 @@ const AddProduct = () => {
   } = useForm({
     defaultValues: {
       productName: "",
-      productCategory: "Mens",
+      productCategory: "men",
       productDescription: "",
       productPrice: "",
       productDiscountPrice: "",
@@ -41,19 +41,40 @@ const AddProduct = () => {
         category: data.productCategory,
         image: base64Image,
         new_price: data.productDiscountPrice,
-        description: data.productDescription,
+        // description: data.productDescription,
         stocks: data.productStocks,
         old_price: data.productPrice,
       };
 
-      // console.log(data);
-      const updatedProduct = [...allProducts, new_product];
-      setAllProducts(updatedProduct);
-      toast.success("Product added successfully!");
+      // // console.log(data);
+      // const updatedProduct = [...allProducts, new_product];
+      // setAllProducts(updatedProduct);
+      // toast.success("Product added successfully!");
 
-      reset();
+      // reset();
+      const newProduct = () => {
+        fetch("http://localhost:4000/products", {
+          method: "POST",
+          headers: { "content-Type": "application/json" },
+          body: JSON.stringify(new_product),
+        })
+          .then((res) => {
+            if (!res.ok) throw new Error("failed to add Product ");
+            return res.json();
+          })
+          .then((addedProduct) => {
+            setAllProducts((prev) => [...prev, addedProduct]);
+            toast.success("Product is Added");
+            reset();
+          })
+          .catch((errors) => {
+            toast.error("OOps! there is some errors while adding products");
+            console.error(errors);
+          });
+      };
+      newProduct();
     };
-    console.log(allProducts);
+    // console.log(allProducts);
     reader.readAsDataURL(file);
   };
 
@@ -95,9 +116,9 @@ const AddProduct = () => {
               }`}
               {...register("productCategory", { required: true })}
             >
-              <option value="Mens">Mens</option>
-              <option value="Womens">Women</option>
-              <option value="Kids">Kids</option>
+              <option value="men">Mens</option>
+              <option value="women">Women</option>
+              <option value="kid">Kids</option>
             </select>
             {errors.productCategory && (
               <div className="error">This Field is Required</div>

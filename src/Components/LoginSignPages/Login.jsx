@@ -9,6 +9,7 @@ const Login = () => {
       email: "Admin@123gmai.com",
       password: "Admin@123",
       adminName: "Abhishek",
+      isAdmin: "true",
     },
   ];
   const signupInfo = JSON.parse(localStorage.getItem("signupInfo"));

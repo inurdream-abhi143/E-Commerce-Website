@@ -6,6 +6,7 @@ import { FcSalesPerformance } from "react-icons/fc";
 import { RiListUnordered } from "react-icons/ri";
 import { FaUsers } from "react-icons/fa";
 import { GoAlertFill } from "react-icons/go";
+import { Link, useNavigate } from "react-router-dom";
 
 const Dashboard = () => {
   console.log("Dashboard Page Rendered");
@@ -25,7 +26,17 @@ const Dashboard = () => {
     // amount.toFix(2);
     // return amount;
   }, 0);
+  const navigate = useNavigate();
 
+  const orderView = () => {
+    navigate("/admin/orders");
+  };
+  const customerView = () => {
+    navigate("/admin/customer");
+  };
+  const stocksView = () => {
+    navigate("/admin/stocks");
+  };
   return (
     <div className="dashboard">
       <h1 className="dashboard-name">Welcome Admin!</h1>
@@ -35,19 +46,22 @@ const Dashboard = () => {
           <h1>Total Sales</h1>
           <p className="value">${totalSales}</p>
         </div>
-        <div className="dashboard-contaier1">
+
+        {/* <Link to="orders" className="list-style"> */}
+        <div className="dashboard-contaier1" onClick={orderView}>
           <RiListUnordered className="icon" />
           <h1>Total Orders</h1>
           <p className="value">{totalOrders}</p>
         </div>
+        {/* </Link> */}
 
-        <div className="dashboard-contaier1">
+        <div className="dashboard-contaier1" onClick={customerView}>
           <FaUsers className="icon" />
           <h1>Total Customers</h1>
           <p className="value">{totalCustomers}</p>
         </div>
 
-        <div className="dashboard-contaier1">
+        <div className="dashboard-contaier1" onClick={stocksView}>
           <GoAlertFill className="icon-alert" />
           <h1>Low Stocks Alert</h1>
           <p className="value">{0}</p>

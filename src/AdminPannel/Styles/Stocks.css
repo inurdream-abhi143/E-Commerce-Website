@@ -148,6 +148,25 @@
   color: #ffe066;
   letter-spacing: 0.2px;
 }
+.addstock {
+  width: 60px;
+  height: 30px;
+  outline: none;
+  border: none;
+  color: white;
+  opacity: 0.3;
+  margin-right: 5px;
+  background-color: transparent;
+}
+.addstockbtn {
+  width: 45px;
+  height: 30px;
+  border: none;
+  color: white;
+  border-radius: 5px;
+  background-color: transparent;
+  box-shadow: 1px 3px 5px purple;
+}
 /* Responsive: Allow horizontal scroll */
 @media (max-width: 1100px) {
   .stocks-table-container {

@@ -8,6 +8,8 @@ import { ShippingContextProvider } from "./Contexts/ShippingContext.jsx";
 import { PaymentContextProvider } from "./Contexts/PaymentContext.jsx";
 import { LoginContextProvider } from "./Contexts/LoginContext.jsx";
 import { ProductContextProvider } from "./Contexts/ProductContext.jsx";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
   <ShopContextProvider>
@@ -15,7 +17,8 @@ createRoot(document.getElementById("root")).render(
       <PaymentContextProvider>
         <LoginContextProvider>
           <ProductContextProvider>
-          <App />
+            <App />
+            <ToastContainer />
           </ProductContextProvider>
         </LoginContextProvider>
       </PaymentContextProvider>

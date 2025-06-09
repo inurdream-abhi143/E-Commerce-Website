@@ -40,10 +40,10 @@ const AddProduct = () => {
         name: data.productName,
         category: data.productCategory,
         image: base64Image,
-        new_price: data.productDiscountPrice,
+        new_price: Number(data.productDiscountPrice),
         // description: data.productDescription,
-        stocks: data.productStocks,
-        old_price: data.productPrice,
+        stocks: Number(data.productStocks),
+        old_price: Number(data.productPrice),
       };
 
       // // console.log(data);
@@ -69,7 +69,7 @@ const AddProduct = () => {
           })
           .catch((errors) => {
             toast.error("OOps! there is some errors while adding products");
-            console.error(errors);
+            // console.error(errors);
           });
       };
       newProduct();

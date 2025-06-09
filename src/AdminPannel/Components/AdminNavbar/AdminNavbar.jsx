@@ -1,9 +1,21 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import "./AdminNavbar.css";
 import { RiAdminFill } from "react-icons/ri";
+import { toast } from "react-toastify";
 
 const AdminNavbar = () => {
+  const navigate = useNavigate();
+  const [login, setlogin] = useState(false);
+  const logoutAdmin = (e) => {
+    setlogin(true);
+    if (!login) {
+      toast.warn("Logout Failed");
+    } else {
+      navigate("/login");
+      toast.success("Logout successfully");
+    }
+  };
   return (
     <div className="adminnavbar">
       <div className="admin-logo">
@@ -40,7 +52,7 @@ const AdminNavbar = () => {
         </ul>
       </div>
       <div className="adminlog-out">
-        <button>Logout</button>
+        <button onClick={logoutAdmin}>Logout</button>
       </div>
     </div>
   );

@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "../Styles/Stocks.css";
 import StockBar from "../Components/StcokBar/StockBar";
+import { toast } from "react-toastify";
 // import all_product from "../../Components/assets/all_product";
 // import { ProductContext } from "../../Contexts/ProductContext";
 const Stocks = () => {
+  const [stocks, setStocks] = useState({}); // uddating stocks
   // const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState([]);
@@ -11,6 +13,7 @@ const Stocks = () => {
   // const { allProducts } = useContext(ProductContext);
   useEffect(() => {
     productList();
+    // UpdateProductList();
   }, []);
   // Pagination
 
@@ -41,6 +44,55 @@ const Stocks = () => {
     // .then(console.log);
   };
 
+  const handleStocks = (id) => {
+    const addStockValue = Number(stocks[id]); // What user entered to add
+    if (isNaN(addStockValue) || addStockValue <= 0) {
+      toast.warn("Please enter a valid number greater than 0");
+      return;
+    }
+
+    // Find the current product from products state
+    const product = products.find((p) => p.id === id);
+    if (!product) {
+      toast.warn("Product not found");
+      return;
+    }
+
+    // Calculate new total stocks
+    const newTotalStocks = product.stocks + addStockValue;
+
+    const stockData = { stocks: newTotalStocks };
+
+    fetch(`http://localhost:4000/products/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(stockData),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Failed to update product stocks");
+        return res.json();
+      })
+      .then((updatedProduct) => {
+        // Update local state with new stock count
+        setProducts((prevProducts) =>
+          prevProducts.map((prod) =>
+            prod.id === id ? { ...prod, stocks: updatedProduct.stocks } : prod
+          )
+        );
+
+        // Clear the input for this product
+        setStocks((prev) => ({ ...prev, [id]: "" }));
+
+        toast.success(
+          `Stock updated to ${updatedProduct.stocks} successfully!`
+        );
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.warning("Error updating stocks, try again.");
+      });
+  };
+
   return (
     <div className="container all_Stocks">
       <StockBar />
@@ -54,10 +106,11 @@ const Stocks = () => {
               <th>Image</th>
               <th>Name</th>
               <th>Category</th>
-              <th>Description</th> {/* Fixed spelling */}
+              {/* <th>Description</th> Fixed spelling */}
               <th>Price</th>
               <th>Discount Price</th> {/* Fixed spelling */}
               <th>Stock</th>
+              <th>Add Stocks</th>
             </tr>
           </thead>
           <tbody>
@@ -73,18 +126,38 @@ const Stocks = () => {
                     <img
                       src={product.image}
                       alt={product.name}
-                      style={{ width: "50px" }}
+                      style={{
+                        width: "30px",
+                        backgroundPosition: "top",
+                        backgroundSize: "contain",
+                      }}
                       className="image-fluid rounded-circle"
                     />
                   </td>
                   <td>{product.name}</td>
                   <td>{product.category}</td>
-                  <td>{product.description || "N/A"}</td>{" "}
+                  {/* <td>{product.description || "N/A"}</td>{" "} */}
                   {/* Changed from image to description */}
                   <td>${product.old_price}</td>
                   <td>${product.new_price}</td>
                   <td>{product.stocks}</td>
                   {/* <td>{product.image}</td> */}
+                  <td>
+                    <input
+                      type="text"
+                      className="addstock"
+                      value={stocks[product.id]}
+                      onChange={(e) => {
+                        setStocks({ ...stocks, [product.id]: e.target.value });
+                      }}
+                    />
+                    <button
+                      className="addstockbtn"
+                      onClick={() => handleStocks(product.id)}
+                    >
+                      Add
+                    </button>
+                  </td>
                 </tr>
               );
             })}

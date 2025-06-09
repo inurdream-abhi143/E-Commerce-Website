@@ -1,4 +1,4 @@
-.customer-section {
+.all_orders {
   width: 100%;
   min-height: 80vh;
   display: flex;
@@ -8,13 +8,7 @@
   padding: 36px 0 0 0;
 }
 
-.customer-header {
-  width: 98%;
-  margin: 0 auto 22px auto;
-}
-
-/* Card-style table container */
-.customer-info {
+.orders-table-container {
   width: 98%;
   margin: 0 auto;
   background: #23272b;
@@ -25,7 +19,7 @@
 }
 
 /* Table Styling */
-.customer-table {
+.orders-table-container table {
   width: 100%;
   min-width: 800px;
   border-collapse: separate;
@@ -35,14 +29,14 @@
   font-size: 0.96rem;
 }
 
-.customer-table th,
-.customer-table td {
+.orders-table-container th,
+.orders-table-container td {
   padding: 7px 10px;
   text-align: center;
   border-bottom: 1px solid #2b2e3a;
 }
 
-.customer-table th {
+.orders-table-container th {
   background: linear-gradient(90deg, #323a4d 70%, #7c3aed 100%);
   color: #ffe066;
   font-weight: 700;
@@ -52,94 +46,52 @@
   font-size: 0.98rem;
 }
 
-.customer-table tr {
+.orders-table-container tr {
   background: #242636;
   transition: background 0.13s;
 }
-.customer-table tr:nth-child(even) {
+.orders-table-container tr:nth-child(even) {
   background: #23272b;
 }
-.customer-table tr:hover {
+.orders-table-container tr:hover {
   background: #363a55;
 }
 
-.customer-table td {
+.orders-table-container td {
   color: #f8fafc;
   vertical-align: middle;
 }
 
-/* Action buttons */
-.actionbtns {
-  display: flex;
-  gap: 8px;
-  justify-content: center;
-}
-.viewbtn,
-.editbtn,
-.banbtn {
-  padding: 4px 15px;
-  font-size: 0.97rem;
-  font-weight: 600;
-  border: none;
-  border-radius: 7px;
-  cursor: pointer;
-  transition: background 0.13s, color 0.13s;
-}
-.viewbtn {
-  background: #e0f7fa;
-  color: #23272b;
-}
-.viewbtn:hover {
-  background: #b2ebf2;
-  color: #7c3aed;
-}
-.editbtn {
-  background: #ffe066;
-  color: #23272b;
-}
-.editbtn:hover {
-  background: #ffd700;
-  color: #7c3aed;
-}
-.banbtn {
-  background: #ff5252;
-  color: #fff;
-}
-.banbtn:hover {
-  background: #c62828;
-  color: #ffe066;
-}
-
 /* Responsive: Allow horizontal scroll */
 @media (max-width: 1100px) {
-  .customer-info {
+  .orders-table-container {
     min-width: 600px;
     width: 99%;
     padding: 6px 0 8px 0;
   }
-  .customer-table {
+  .orders-table-container table {
     min-width: 600px;
     font-size: 0.93rem;
   }
-  .customer-table th,
-  .customer-table td {
+  .orders-table-container th,
+  .orders-table-container td {
     padding: 7px 5px;
   }
 }
 
 @media (max-width: 768px) {
-  .customer-info {
+  .orders-table-container {
     min-width: 400px;
     width: 100%;
     border-radius: 0;
     padding: 2px 0 6px 0;
   }
-  .customer-table {
+  .orders-table-container table {
     min-width: 450px;
     font-size: 0.88rem;
   }
-  .customer-table th,
-  .customer-table td {
+  .orders-table-container th,
+  .orders-table-container td {
     padding: 5px 3px;
   }
 }

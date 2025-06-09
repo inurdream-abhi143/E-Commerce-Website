@@ -1,12 +1,16 @@
 .adminnavbar {
   display: flex;
-  height: 100vh;
-  width: 15vw;
   flex-direction: column;
-  background-color: #1e293b;
-  color: whitesmoke;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: space-between;
+  min-height: 100vh;
+  width: 100%;
+  background: linear-gradient(180deg, #1e293b 80%, #7c3aed 100%);
+  color: #f8fafc;
+  box-shadow: 2px 0 16px rgba(44, 62, 80, 0.09);
+  padding: 18px 0 18px 0;
+  position: sticky;
+  top: 0;
 }
 
 .admin-logo {
@@ -14,54 +18,121 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10px;
-  padding: 10px;
+  margin: 8px 0 0 0;
+  padding: 6px 0 0 0;
 }
 .admin-logo .admin-icon {
-  font-size: 56px;
+  font-size: 52px;
   font-weight: 600;
+  margin-bottom: 3px;
 }
 .admin-logo h2 {
-  font-size: 36px;
+  font-size: 2.1rem;
   font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #ffe066;
+  margin: 0;
 }
 
 .adminnav-menu ul {
-  margin-top: 35px;
+  margin-top: 32px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
-}
-.a {
-  text-decoration: none;
-  color: black;
-  color: whitesmoke;
+  gap: 36px;
+  padding: 0;
 }
 .adminnav-link {
   list-style: none;
-  text-decoration: none;
   font-size: 20px;
   cursor: pointer;
+  transition: transform 0.13s, color 0.13s;
 }
-.adminnav-link :hover {
-  font-size: 22px;
+.adminnav-link .a {
+  text-decoration: none;
+  color: #f8fafc;
+  transition: color 0.15s;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 4px 20px;
+  border-radius: 8px;
+  display: block;
 }
+.adminnav-link .a.active,
+.adminnav-link .a:focus,
+.adminnav-link .a:hover {
+  color: #ffe066;
+  background: #323a4d;
+  font-size: 21px;
+}
+
 .adminlog-out {
   display: flex;
-  margin: 25px 0;
-  padding: 15px 0;
+  margin: 0 0 6px 0;
+  padding: 0;
+  width: 100%;
+  justify-content: center;
 }
 
 .adminlog-out button {
-  width: 120px;
-  height: 50px;
+  width: 110px;
+  height: 44px;
   outline: none;
   border: none;
   cursor: pointer;
-  border-radius: 15px;
-  background-color: azure;
-  color: black;
-  font-size: 20px;
-  font-weight: 600;
+  border-radius: 13px;
+  background: linear-gradient(90deg, #e0f7fa 60%, #ffe066 100%);
+  color: #23272b;
+  font-size: 1.15rem;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+  transition: background 0.14s, color 0.14s;
+}
+.adminlog-out button:hover {
+  background: #ffe066;
+  color: #7c3aed;
+}
+
+/* Responsive adjustments */
+@media (max-width: 990px) {
+  .adminnavbar {
+    min-width: 130px;
+    padding: 8px 0 8px 0;
+  }
+  .admin-logo .admin-icon {
+    font-size: 44px;
+  }
+  .admin-logo h2 {
+    font-size: 1.3rem;
+  }
+  .adminnav-menu ul {
+    gap: 24px;
+  }
+  .adminnav-link {
+    font-size: 17px;
+  }
+}
+
+@media (max-width: 600px) {
+  .adminnavbar {
+    min-width: 80px;
+    padding: 3px 0 3px 0;
+  }
+  .admin-logo .admin-icon {
+    font-size: 32px;
+  }
+  .admin-logo h2 {
+    font-size: 1rem;
+  }
+  .adminnav-menu ul {
+    gap: 14px;
+  }
+  .adminnav-link {
+    font-size: 14px;
+  }
+  .adminlog-out button {
+    width: 90px;
+    height: 36px;
+    font-size: 1rem;
+  }
 }

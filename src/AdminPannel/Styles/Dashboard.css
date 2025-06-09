@@ -1,68 +1,142 @@
 .dashboard {
   display: flex;
   flex-direction: column;
-  /* color: #f8fafc; */
-  /* background-color: #1e293b; */
-  /* height: 100vh; */
+  background: #23272b;
+  min-height: 100vh;
 }
 
 .dashboard .dashboard-name {
-  font-size: 48px;
+  font-size: 2.2rem;
   text-align: start;
   font-weight: 700;
-  margin: 15px;
-  padding: 10px;
-  color: indigo;
-}
-.dashboard-container {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  margin: 15px;
-  padding: 10px;
-}
-.dashboard-contaier1 {
-  border: 2px solid black;
-  height: 150px;
-  width: 250px;
-  text-align: center;
-  padding: 5px;
-  border-radius: 15px;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  background-color: white;
-  color: indigo;
-}
-.dashboard-contaier1 h1 {
-  font-size: 24px;
-}
-.dashboard-contaier1 .value {
-  font-size: 50px;
-  margin: 0 10px;
-  font-weight: 700;
+  margin: 20px 0 10px 0;
+  padding: 0 0 0 25px;
+  color: #b8b8ff;
+  letter-spacing: 1px;
 }
 
-.container-2 {
-  margin: 30px 15px;
-  padding: 30px 10px;
-  /* width: 100vw; */
+.dashboard-container {
   display: flex;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 2rem;
+  margin: 20px 30px 10px 30px;
+  flex-wrap: wrap;
+}
+
+.dashboard-contaier1 {
+  background: linear-gradient(135deg, #262a32 70%, #373f51 100%);
+  border: none;
+  height: 170px;
+  width: 235px;
+  text-align: center;
+  padding: 18px 10px;
+  border-radius: 18px;
+  cursor: pointer;
+  box-shadow: 0 4px 24px rgba(50, 60, 90, 0.12);
+  color: #e4e2fa;
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  transition: transform 0.13s, box-shadow 0.13s;
+  position: relative;
 }
-.container-2-section1 {
-  width: 55%;
+.dashboard-contaier1:hover {
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 8px 32px rgba(82, 70, 255, 0.18);
+  background: linear-gradient(135deg, #2b2e3a 70%, #4e54c8 100%);
 }
-.container-2-section2 {
-  border: 2ps solid black;
-  height: 300px;
-  width: 45%;
+.dashboard-contaier1 h1 {
+  font-size: 1.2rem;
+  color: #a59df7;
+  margin: 0.5rem 0 0.25rem 0;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+.dashboard-contaier1 .value {
+  font-size: 2.2rem;
+  margin: 0;
+  font-weight: 700;
+  color: #ffe066;
+  letter-spacing: 1px;
 }
 
 .icon {
-  font-size: 42px;
+  font-size: 2.3rem;
+  margin-bottom: 8px;
+  color: #7c3aed;
+  background: #22223b;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(60, 40, 150, 0.1);
 }
 .icon-alert {
-  font-size: 48px;
-  color: red;
+  font-size: 2.3rem;
+  margin-bottom: 8px;
+  color: #ff4d4f;
+  background: #fff0f1;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: 0 2px 8px rgba(255, 77, 79, 0.07);
+}
+
+.container-2 {
+  margin: 30px 30px 0 30px;
+  padding: 20px 0 0 0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  background: none;
+}
+.container-2-section1,
+.container-2-section2 {
+  background: #262a32;
+  border-radius: 14px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 1rem;
+  min-width: 320px;
+}
+.container-2-section1 {
+  width: 57%;
+}
+.container-2-section2 {
+  width: 40%;
+  min-height: 280px;
+  /* Remove typo '2ps' and use proper border if needed: */
+  /* border: 2px solid #33354d; */
+}
+
+@media (max-width: 1100px) {
+  .dashboard-container,
+  .container-2 {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .dashboard-contaier1,
+  .container-2-section1,
+  .container-2-section2 {
+    width: 100%;
+    min-width: unset;
+  }
+}
+
+/* Table or Chart polish, if you use tables inside RecentOrders, eg: */
+.table thead th {
+  background: #2b2e3a;
+  color: #fff;
+}
+.table tbody tr:hover {
+  background: #23272b;
+}
+
+/* chart css */
+.salesview-chart-container {
+  background: #23272b;
+  border-radius: 14px;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.07);
+  padding: 1.5rem 1rem;
+  min-width: 300px;
+  min-height: 320px;
 }

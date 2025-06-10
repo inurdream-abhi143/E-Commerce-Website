@@ -90,71 +90,36 @@
 }
 
 /* Stock column: subtle green, not overwhelming */
-.all_Stocks td:last-child {
+.all_Stocks .stocks {
   font-weight: 700;
-  color: #23cb78;
+  color: #1ed67a;
   background: none;
   letter-spacing: 0.5px;
   font-size: 0.95rem;
 }
 
-/* pagination  */
-.stocks-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 24px 0 0 0;
-  gap: 8px;
-  flex-wrap: wrap;
+.all_Stocks .low-stocks {
+  font-weight: 700;
+  color: #f32f11;
+  background: none;
+  letter-spacing: 0.5px;
+  font-size: 0.95rem;
+  animation: blink 1s step-start 3;
 }
 
-.stocks-pagination .pagebtn {
-  padding: 6px 18px;
-  border: 1.5px solid #7c3aed;
-  background: linear-gradient(90deg, #23272b 70%, #323a4d 100%);
-  color: #ffe066;
-  cursor: pointer;
-  border-radius: 7px;
-  font-size: 0.97rem;
-  font-weight: 600;
-  transition: background 0.15s, color 0.15s, border-color 0.13s,
-    box-shadow 0.13s;
-  min-width: 48px;
-  text-align: center;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
 }
 
-.stocks-pagination .pagebtn:hover,
-.stocks-pagination .pagebtn:focus {
-  background: #7c3aed;
-  color: #fff;
-  border-color: #ffe066;
-  outline: none;
-}
-
-.stocks-pagination .pagebtn:disabled {
-  background: #2b2e3a;
-  color: #aaa;
-  border-color: #434b59;
-  cursor: not-allowed;
-  opacity: 0.7;
-  box-shadow: none;
-}
-
-.items-per-page {
-  font-size: 1.09rem;
-  font-weight: 600;
-  margin: 0 13px;
-  color: #ffe066;
-  letter-spacing: 0.2px;
-}
 .addstock {
-  width: 60px;
+  width: 55px;
   height: 30px;
   outline: none;
   border: none;
   color: rgb(7, 6, 6);
-
+  padding-left: 5px;
   margin-right: 5px;
   background-color: lightgray;
 }

@@ -15,7 +15,6 @@ const StockBar = (props) => {
     handleFilterStocks();
   };
   const resetFilter = () => {
-    4;
     handleResetFilter();
   };
   return (

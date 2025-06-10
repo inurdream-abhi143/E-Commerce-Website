@@ -1,8 +1,22 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
+import { RxReset } from "react-icons/rx";
 import "./CustomerHeader.css";
 
-const CustomerHeader = () => {
+const CustomerHeader = (props) => {
+  const {
+    filterUsers,
+    setFilterUsers,
+    handleUserFilter,
+    filterStatus,
+    setFilterStatus,
+  } = props;
+
+  const onUserFilter = () => {
+    handleUserFilter();
+    console.log(filterUsers);
+  };
+  const onFilterReset = () => {};
   return (
     <div className="customerheader">
       <div className="customer-section1">
@@ -14,9 +28,27 @@ const CustomerHeader = () => {
           type="text"
           name="search-bar"
           placeholder="Search for customer by Status"
+          value={filterUsers}
+          onChange={(e) => {
+            setFilterUsers(e.target.value);
+          }}
         />
-        <button className="searchbtn">
+        <select
+          name="status"
+          value={filterStatus}
+          onChange={(e) => {
+            setFilterStatus(e.target.value);
+          }}
+        >
+          <option value="All">All</option>
+          <option value="Ban">Ban</option>
+          <option value="UnBan">UnBan</option>
+        </select>
+        <button className="searchbtn" onClick={onUserFilter}>
           <CiSearch className="search" />
+        </button>
+        <button className="searchbtn" onClick={onFilterReset}>
+          <RxReset className="search" />
         </button>
       </div>
     </div>

@@ -95,11 +95,19 @@ const Stocks = () => {
     console.log(displayProduct);
   }, [displayProduct]);
 
-  const totalPages = Math.ceil(displayProduct.length / itemsPerPage);
+  const sortedDisplayProduct = displayProduct.sort(
+    (a, b) => a.stocks - b.stocks
+  );
+  // console.log(sortedDisplayProduct);
+
+  const totalPages = Math.ceil(sortedDisplayProduct.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
 
-  const currentItems = displayProduct.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = sortedDisplayProduct.slice(
+    indexOfFirstItem,
+    indexOfLastItem
+  );
   // console.log(`current  page ${currentPage} totalPages${totalPages} `);
 
   const getNextPage = () => {
@@ -165,7 +173,13 @@ const Stocks = () => {
                   {/* Changed from image to description */}
                   <td>${product.old_price}</td>
                   <td>${product.new_price}</td>
-                  <td>{product.stocks}</td>
+                  <td className="stocks">
+                    {product.stocks < 15 ? (
+                      <span className="low-stocks">{product.stocks}</span>
+                    ) : (
+                      product.stocks
+                    )}
+                  </td>
                   {/* <td>{product.image}</td> */}
                   <td>
                     <input
@@ -190,7 +204,7 @@ const Stocks = () => {
         </table>
       </div>
 
-      <div className="stocks-pagination">
+      <div className="admin-pagination">
         <button
           className="pagebtn"
           onClick={() => {
@@ -199,7 +213,7 @@ const Stocks = () => {
         >
           PREV
         </button>
-        <p className="items-per-page">
+        <p className="admin-items-per-page">
           {`  ${currentPage} - ${totalPages} of ${displayProduct.length} Products  `}
         </p>
         <button

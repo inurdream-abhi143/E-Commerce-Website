@@ -153,10 +153,10 @@
   height: 30px;
   outline: none;
   border: none;
-  color: white;
-  opacity: 0.3;
+  color: rgb(7, 6, 6);
+
   margin-right: 5px;
-  background-color: transparent;
+  background-color: lightgray;
 }
 .addstockbtn {
   width: 45px;

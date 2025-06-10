@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
+import { RxReset } from "react-icons/rx";
 import "./StockBar.css";
 
-const StockBar = () => {
+const StockBar = (props) => {
+  const {
+    handleFilterStocks,
+    setFilterCategory,
+    filterCategory,
+    handleResetFilter,
+  } = props;
+
+  const handleFilter = () => {
+    handleFilterStocks();
+  };
+  const resetFilter = () => {
+    4;
+    handleResetFilter();
+  };
   return (
     <div className="stock-bar">
       <div className="customer-section1">
@@ -13,10 +28,17 @@ const StockBar = () => {
           className="search-bar"
           type="text"
           name="search-bar"
+          value={filterCategory}
+          onChange={(e) => {
+            setFilterCategory(e.target.value);
+          }}
           placeholder="Search for Stocks by Status"
         />
-        <button className="searchbtn">
+        <button className="searchbtn" onClick={handleFilter}>
           <CiSearch className="search" />
+        </button>
+        <button className="searchbtn" onClick={resetFilter}>
+          <RxReset className="search" />
         </button>
       </div>
     </div>

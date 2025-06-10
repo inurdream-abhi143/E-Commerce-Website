@@ -6,6 +6,8 @@ import { toast } from "react-toastify";
 // import { ProductContext } from "../../Contexts/ProductContext";
 const Stocks = () => {
   const [stocks, setStocks] = useState({}); // uddating stocks
+  const [filterCategory, setFilterCategory] = useState(""); // for filter
+  const [filteredProducts, setfilteredProducts] = useState([]);
   // const allProducts = JSON.parse(localStorage.getItem("allProducts")) || [];
   const [currentPage, setCurrentPage] = useState(1);
   const [products, setProducts] = useState([]);
@@ -16,26 +18,6 @@ const Stocks = () => {
     // UpdateProductList();
   }, []);
   // Pagination
-
-  const totalPages = Math.ceil(products.length / itemsPerPage);
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-
-  const currentItems = products.slice(indexOfFirstItem, indexOfLastItem);
-  console.log(`current  page ${currentPage} totalPages${totalPages} `);
-
-  const getNextPage = () => {
-    // currentPage < totalPages ? setCurrentPage(currentPage + 1) : currentPage;
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
-  };
-  const getPrevPage = () => {
-    // currentPage > 1 ? setCurrentPage(currentPage - 1) : currentPage;
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
-  };
 
   const productList = () => {
     fetch("http://localhost:4000/products")
@@ -92,15 +74,59 @@ const Stocks = () => {
         toast.warning("Error updating stocks, try again.");
       });
   };
+  const handleFilterStocks = () => {
+    // console.log("filterCteogory is ", filterCategory);
+    const filtered = products.filter((filterproduct, i) => {
+      return filterproduct.category === filterCategory;
+      // console.log("filter product", );
+    });
+    setfilteredProducts(filtered);
+  };
+  const handleResetFilter = () => {
+    setfilteredProducts([]);
+    setFilterCategory("");
+    console.log("It's Working ");
+  };
+
+  const displayProduct =
+    filteredProducts.length > 0 ? filteredProducts : products;
+
+  useEffect(() => {
+    console.log(displayProduct);
+  }, [displayProduct]);
+
+  const totalPages = Math.ceil(displayProduct.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+
+  const currentItems = displayProduct.slice(indexOfFirstItem, indexOfLastItem);
+  // console.log(`current  page ${currentPage} totalPages${totalPages} `);
+
+  const getNextPage = () => {
+    // currentPage < totalPages ? setCurrentPage(currentPage + 1) : currentPage;
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
+  };
+  const getPrevPage = () => {
+    // currentPage > 1 ? setCurrentPage(currentPage - 1) : currentPage;
+    if (currentPage > 1) {
+      setCurrentPage(currentPage - 1);
+    }
+  };
 
   return (
     <div className="container all_Stocks">
-      <StockBar />
+      <StockBar
+        handleFilterStocks={handleFilterStocks}
+        setFilterCategory={setFilterCategory}
+        filterCategory={filterCategory}
+        handleResetFilter={handleResetFilter}
+      />
       <div className="stocks-table-container">
         <table>
           <thead>
             <tr>
-              {" "}
               {/* Added missing tr tag */}
               <th>Sr.No</th>
               <th>Image</th>
@@ -119,7 +145,6 @@ const Stocks = () => {
               const itemNumber = indexOfFirstItem + i + 1; // Fixed index calculation
               return (
                 <tr key={itemNumber}>
-                  {" "}
                   {/* Added key prop */}
                   <td>{itemNumber}</td> {/* Fixed sequential numbering */}
                   <td>
@@ -175,7 +200,7 @@ const Stocks = () => {
           PREV
         </button>
         <p className="items-per-page">
-          {`  ${currentPage} - ${totalPages} of ${products.length} Products  `}
+          {`  ${currentPage} - ${totalPages} of ${displayProduct.length} Products  `}
         </p>
         <button
           className="pagebtn"

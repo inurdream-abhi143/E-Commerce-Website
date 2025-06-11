@@ -47,7 +47,22 @@
   font-size: 1.05rem;
   color: #ffe066aa;
 }
-
+.customer-section2 .drop-filed {
+  width: 150px;
+  height: 40px;
+  border: none;
+  background-color: transparent;
+  color: #ffe066;
+  border-radius: 10px;
+  text-align: center;
+  outline: none;
+  box-shadow: 1px 2px 2px #ffe066;
+}
+.customer-section2 .drop-filed option {
+  background-color: black;
+  border: none;
+  border-radius: 15px;
+}
 .customer-section2 .searchbtn {
   width: 50px;
   height: 40px;

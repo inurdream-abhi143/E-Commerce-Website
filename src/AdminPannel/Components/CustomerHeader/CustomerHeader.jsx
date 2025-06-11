@@ -14,7 +14,7 @@ const CustomerHeader = (props) => {
 
   const onUserFilter = () => {
     handleUserFilter();
-    console.log(filterUsers);
+    // console.log(typeof filterUsers);
   };
   const onFilterReset = () => {};
   return (
@@ -39,10 +39,11 @@ const CustomerHeader = (props) => {
           onChange={(e) => {
             setFilterStatus(e.target.value);
           }}
+          className="drop-filed"
         >
           <option value="All">All</option>
           <option value="Ban">Ban</option>
-          <option value="UnBan">UnBan</option>
+          <option value="Active">Active</option>
         </select>
         <button className="searchbtn" onClick={onUserFilter}>
           <CiSearch className="search" />

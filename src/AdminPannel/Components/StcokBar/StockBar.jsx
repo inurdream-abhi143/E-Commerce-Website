@@ -31,7 +31,7 @@ const StockBar = (props) => {
           onChange={(e) => {
             setFilterCategory(e.target.value);
           }}
-          placeholder="Search for Stocks by Status"
+          placeholder="Search for Stocks by Category"
         />
         <button className="searchbtn" onClick={handleFilter}>
           <CiSearch className="search" />

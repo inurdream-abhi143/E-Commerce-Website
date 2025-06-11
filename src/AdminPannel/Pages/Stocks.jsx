@@ -81,19 +81,19 @@ const Stocks = () => {
       // console.log("filter product", );
     });
     setfilteredProducts(filtered);
+    setCurrentPage(1);
   };
   const handleResetFilter = () => {
     setfilteredProducts([]);
     setFilterCategory("");
-    console.log("It's Working ");
   };
 
   const displayProduct =
     filteredProducts.length > 0 ? filteredProducts : products;
 
-  useEffect(() => {
-    console.log(displayProduct);
-  }, [displayProduct]);
+  // useEffect(() => {
+  //   console.log(displayProduct);
+  // }, [displayProduct]);
 
   const sortedDisplayProduct = displayProduct.sort(
     (a, b) => a.stocks - b.stocks

@@ -26,10 +26,10 @@ const Signup = () => {
   const onSubmit = (data) => {
     // console.log("userData", data);
     if (data.password !== data.Cpassword) {
-      alert("Passwords do not match");
+      toast.warning("Passwords do not match");
       return;
     } else if (data.termagree !== true) {
-      alert("Click the Check box");
+      toast.warn("Click the Check box");
     }
     {
       const UserData = {
@@ -38,11 +38,12 @@ const Signup = () => {
         password: data.password,
         confirmPassword: data.Cpassword,
         termagree: data.termagree,
+        userStatus: "Active",
       };
       setSignupInfo(UserData);
 
       // saveUserInfoToLocalStorage(UserData);
-      
+
       reset();
       // navigate("/login");
       toast.success("Account created! Redirecting to login...");

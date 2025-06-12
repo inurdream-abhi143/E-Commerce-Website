@@ -4,53 +4,70 @@ import "../Styles/Customer.css";
 import { toast } from "react-toastify";
 
 function Customer() {
-  // getting data from localStorage
-  const customers = JSON.parse(localStorage.getItem("signupInfo"));
-  // console.log("user Dettails", customers);
-  // for filtering feature
+  // Only read from localStorage once, not on every render
+  const [displayUsers, setDisplayUsers] = useState(
+    () => JSON.parse(localStorage.getItem("signupInfo")) || []
+  );
+
+  // const [isBan, setIsBan] = useState(false);
   const [filterUsers, setFilterUsers] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
-  const [displayUsers, setDisplayUsers] = useState(customers || []);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const handleUserFilter = () => {
+    const customers = JSON.parse(localStorage.getItem("signupInfo")) || [];
     const filterCustomers = customers.filter((user) => {
       const matchesNameOrEmail =
         user.name.toLowerCase() === filterUsers.toLowerCase() ||
         user.email.toLowerCase() === filterUsers.toLowerCase();
-
       const matchesStatus =
         filterStatus === "All" || user.userStatus === filterStatus;
-
       return matchesNameOrEmail && matchesStatus;
     });
     setDisplayUsers(filterCustomers.length > 0 ? filterCustomers : customers);
     setCurrentPage(1);
   };
 
-  // pagination functions
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // console.log(customers);
+  // Pagination
   const itemPerPage = 5;
   const totalPages = Math.ceil(displayUsers.length / itemPerPage);
-
   const indexOfLastItem = currentPage * itemPerPage;
   const indexOfFirstItem = indexOfLastItem - itemPerPage;
   const currentItems = displayUsers.slice(indexOfFirstItem, indexOfLastItem);
 
   const getPrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
-    }
+    if (currentPage > 1) setCurrentPage(currentPage - 1);
   };
   const getNextPage = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
-    }
+    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
   };
+
+  // Ban logic: just update userStatus, update localStorage and displayUsers
   const handleBan = (user) => {
-    console.log("user key", user);
+    const customers = JSON.parse(localStorage.getItem("signupInfo")) || [];
+    const updatedUsers = customers.map((u) =>
+      u.email === user.email
+        ? { ...u, userStatus: u.userStatus === "Banned" ? "Active" : "Banned" }
+        : u
+    );
+    localStorage.setItem("signupInfo", JSON.stringify(updatedUsers));
+
+    // Apply current filter to updated list
+    const filterCustomers = updatedUsers.filter((u) => {
+      const matchesNameOrEmail =
+        u.name.toLowerCase() === filterUsers.toLowerCase() ||
+        u.email.toLowerCase() === filterUsers.toLowerCase();
+      const matchesStatus =
+        filterStatus === "All" || u.userStatus === filterStatus;
+      return matchesNameOrEmail && matchesStatus;
+    });
+    setDisplayUsers(
+      filterCustomers.length > 0 ? filterCustomers : updatedUsers
+    );
+
+    toast.success(`${user.name} status changed 🚫`);
   };
+
   return (
     <div className="customer-section">
       <div className="customer-header">
@@ -60,6 +77,7 @@ function Customer() {
           handleUserFilter={handleUserFilter}
           filterStatus={filterStatus}
           setFilterStatus={setFilterStatus}
+          handleBan={handleBan}
         />
       </div>
       <div className="customer-info">
@@ -87,7 +105,7 @@ function Customer() {
                     <button className="viewbtn">View</button>
                     <button className="editbtn">Edit</button>
                     <button className="banbtn" onClick={() => handleBan(user)}>
-                      Ban
+                      {user.userStatus === "Banned" ? "UnBan" : "Ban"}
                     </button>
                   </td>
                 </tr>

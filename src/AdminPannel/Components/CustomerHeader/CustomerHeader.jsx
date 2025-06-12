@@ -10,10 +10,12 @@ const CustomerHeader = (props) => {
     handleUserFilter,
     filterStatus,
     setFilterStatus,
+    handleBan,
   } = props;
 
   const onUserFilter = () => {
     handleUserFilter();
+    handleBan();
     // console.log(typeof filterUsers);
   };
   const onFilterReset = () => {};
@@ -42,7 +44,7 @@ const CustomerHeader = (props) => {
           className="drop-filed"
         >
           <option value="All">All</option>
-          <option value="Ban">Ban</option>
+          <option value="Banned">Banned</option>
           <option value="Active">Active</option>
         </select>
         <button className="searchbtn" onClick={onUserFilter}>

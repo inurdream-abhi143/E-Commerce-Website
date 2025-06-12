@@ -6,6 +6,7 @@ import Orders from "./Pages/Orders";
 import Stocks from "./Pages/Stocks";
 import AdminProduct from "./Pages/AdminProduct";
 import Customer from "./Pages/Customer";
+import TaxImpliment from "./Pages/TaxImpliment";
 
 const AdminApp = () => {
   console.log("AdminApp Rendered");
@@ -20,6 +21,7 @@ const AdminApp = () => {
           <Route path="orders" element={<Orders />} />
           <Route path="stocks" element={<Stocks />} />
           <Route path="customer" element={<Customer />} />
+          <Route path="Tax" element={<TaxImpliment />} />
         </Route>
 
         {/* Optional: catch-all route for unknown admin paths */}

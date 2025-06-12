@@ -41,7 +41,7 @@ const Stocks = () => {
     }
 
     // Calculate new total stocks
-    const newTotalStocks = product.stocks + addStockValue;
+    const newTotalStocks = Number(product.stocks) + Number(addStockValue);
 
     const stockData = { stocks: newTotalStocks };
 

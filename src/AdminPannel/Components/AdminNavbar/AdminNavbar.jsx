@@ -49,6 +49,11 @@ const AdminNavbar = () => {
               Stocks
             </Link>
           </li>
+          <li className=" adminnav-link">
+            <Link className="a" to="tax">
+              Tax Manage
+            </Link>
+          </li>
         </ul>
       </div>
       <div className="adminlog-out">

@@ -2,20 +2,18 @@ import React, { useContext } from "react";
 import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
 import "./Payment.css";
-import { set, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { PaymentContext } from "../../Contexts/PaymentContext";
+import { toast } from "react-toastify";
 
 const Payment = () => {
-  // const [paymentMode , setPaymentMode ] = useState("credit-card")
-
-  // const [paymentDone , setPaymentDone] = useState(false)
   const navigate = useNavigate();
   const { shippingInfo } = useContext(ShippingContext);
-  // initialize the payment context
   const { setPaymentInfo } = useContext(PaymentContext);
   const { getTotalCartAmount, allProducts, cartItems } =
     useContext(ShopContext);
+
   const {
     register,
     handleSubmit,
@@ -30,17 +28,15 @@ const Payment = () => {
       cardholdername: "",
     },
   });
+
   const paymentMode = watch("payment", "credit-card");
 
-  // console.log("payment mode",paymentMode);
-  // console.log("discount", shippingInfo.discount);
-  // console.log("my data", shippingInfo);
+  const customerAddress = shippingInfo
+    ? `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}`
+    : "";
 
-  const customerAddress =
-    `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}` ||
-    "";
-  const customerPhone = shippingInfo.mobile;
-  const customerEmail = shippingInfo.email;
+  const customerPhone = shippingInfo?.mobile;
+  const customerEmail = shippingInfo?.email;
 
   const getShippingMethod = (Method) => {
     switch (Method) {
@@ -54,43 +50,72 @@ const Payment = () => {
         return 0;
     }
   };
-  const TotalAmount =
-    getTotalCartAmount() +
-    getShippingMethod(shippingInfo.shipping_method) -
-    shippingInfo.discount;
-  const ShippingCost = getShippingMethod(shippingInfo.shipping_method);
-  const onSubmit = (data) => {
-    // console.log("my data", data);
-    if (paymentMode === "credit-card" || paymentMode === "cash-on-delivery") {
-      // alert("Payment Successful");
 
+  const ShippingCost = getShippingMethod(shippingInfo?.shipping_method);
+  const TotalAmount =
+    getTotalCartAmount() + ShippingCost - (shippingInfo?.discount || 0);
+
+  const handleStocks = async () => {
+    try {
+      const updatedProducts = [];
+
+      allProducts.forEach((Product) => {
+        const orderQty = cartItems[Product.id];
+        if (orderQty > 0) {
+          const newStock = Product.stocks - orderQty;
+          updatedProducts.push({
+            id: Product.id,
+            stocks: newStock < 0 ? 0 : newStock,
+          });
+        }
+      });
+
+      for (const product of updatedProducts) {
+        await fetch(`http://localhost:4000/products/${product.id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ stocks: product.stocks }),
+        });
+      }
+
+      toast.success("Stocks updated successfully");
+    } catch (error) {
+      console.error("Error updating stocks:", error);
+      toast.warning("There was an issue updating the product stock.");
+    }
+  };
+
+  const onSubmit = async (data) => {
+    if (paymentMode === "credit-card" || paymentMode === "cash-on-delivery") {
       const date = new Date();
       const currentDate = date.toLocaleDateString();
+
       const paymentData = {
         paymentMode: data.payment,
         cardnumber: data.cardnumber,
         cardholdername: data.cardholdername,
         paymentDate: currentDate,
         shippingCost: ShippingCost,
-        discount: shippingInfo.discount,
+        discount: shippingInfo?.discount || 0,
       };
-      setPaymentInfo(paymentData);
-      // console.log("payment data", paymentData);
-    } else {
-      alert("Please select a payment method");
-    }
 
-    navigate("/confirmorder");
+      setPaymentInfo(paymentData);
+      await handleStocks();
+      navigate("/confirmorder");
+    } else {
+      toast.warn("Please select a payment method");
+    }
   };
+
   return (
     <div className="payment">
       <div className="userinfo">
         <p>
-          {" "}
-          Name:<span>{shippingInfo.name}</span>
+          Name: <span>{shippingInfo?.name}</span>
         </p>
         <p>
-          {" "}
           Address: <span>{customerAddress}</span>
         </p>
         <p>
@@ -100,10 +125,10 @@ const Payment = () => {
           Email: <span>{customerEmail}</span>
         </p>
         <p>
-          Shipping Method: <span>{shippingInfo.shipping_method}</span>
+          Shipping Method: <span>{shippingInfo?.shipping_method}</span>
         </p>
       </div>
-      {/* the products displays css  comes from cartItem  */}
+
       <div className="product-info">
         <div className="shipping-format-main">
           <p>Title</p>
@@ -116,18 +141,16 @@ const Payment = () => {
             return (
               <div key={e.id}>
                 <div className="shipping-format shipping-format-main">
-                  {/* <img src={e.image} alt='' className='carticon-product-icon'/> */}
                   <p className="product-name">{e.name}</p>
                   <p>{cartItems[e.id]}</p>
                   <p>${e.new_price}</p>
-                  <p>{e.new_price * cartItems[e.id]}</p>
+                  <p>${e.new_price * cartItems[e.id]}</p>
                 </div>
               </div>
             );
           }
         })}
       </div>
-      {/* product ends here  */}
 
       <div className="price-info">
         <div className="price-info-total">
@@ -140,15 +163,15 @@ const Payment = () => {
         </div>
         <div className="price-info-total">
           <p>Discount</p>
-          <h3>${shippingInfo.discount || 0}</h3>
+          <h3>${shippingInfo?.discount || 0}</h3>
         </div>
         <hr className="hr" />
         <div className="price-info-total">
-          <p>Total Amount </p>
+          <p>Total Amount</p>
           <h3>${TotalAmount || 0}</h3>
         </div>
       </div>
-      {/* <button className='payment-button'>Pay Now</button> */}
+
       <div className="product-paymment">
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="paymentmode">
@@ -158,7 +181,7 @@ const Payment = () => {
               id="credit-card"
               value="credit-card"
               {...register("payment", {
-                required: "please Select a payment method",
+                required: "Please select a payment method",
               })}
             />
             <label className="paymentmethod" htmlFor="credit-card">
@@ -169,16 +192,16 @@ const Payment = () => {
               name="payment"
               id="cash-on-delivery"
               value="cash-on-delivery"
-              className={`${errors.payment ? "is-invalid" : ""}`}
               {...register("payment", {
-                required: "please Select a payment Method",
+                required: "Please select a payment method",
               })}
             />
             <label className="paymentmethod" htmlFor="cash-on-delivery">
               Cash On Delivery
             </label>
           </div>
-          {paymentMode === "credit-card" ? (
+
+          {paymentMode === "credit-card" && (
             <div className="add-card-info">
               <div>
                 <label className="card-name" htmlFor="cardnumber">
@@ -190,24 +213,27 @@ const Payment = () => {
                   }`}
                   {...register("cardnumber", {
                     required: true,
-                    pattern: { value: /^\d{16}$/, message: "Invalid Card " },
+                    pattern: {
+                      value: /^\d{16}$/,
+                      message: "Invalid Card Number",
+                    },
                   })}
                   type="text"
-                  name="cardnumber"
                   id="cardnumber"
                   placeholder="Enter Card Number"
                 />
                 {errors.cardnumber && (
                   <div className="errorn">
                     {errors.cardnumber.type === "required"
-                      ? "This field is Required"
+                      ? "This field is required"
                       : errors.cardnumber.message}
                   </div>
                 )}
               </div>
+
               <div className="card-info2">
                 <label htmlFor="expiry" className="card-name">
-                  Expiry Date{" "}
+                  Expiry Date
                 </label>
                 <input
                   className={`card-info2-e ${
@@ -221,28 +247,27 @@ const Payment = () => {
                     },
                   })}
                   type="text"
-                  name="expiry"
                   id="expiry"
                   placeholder="eg: 11/28"
                 />
                 {errors.expiry && (
                   <div className="error">
                     {errors.expiry.type === "required"
-                      ? "This filed is Required"
+                      ? "This field is required"
                       : errors.expiry.message}
                   </div>
                 )}
+
                 <label htmlFor="cvv" className="card-name">
-                  CVV{" "}
+                  CVV
                 </label>
                 <input
                   className={`card-info2-e ${errors.cvv ? "is-invalid" : ""}`}
                   {...register("cvv", {
                     required: true,
-                    pattern: { value: /^\d{3}$/, message: "invalid CVV" },
+                    pattern: { value: /^\d{3}$/, message: "Invalid CVV" },
                   })}
                   type="text"
-                  name="cvv"
                   id="cvv"
                   placeholder="CVV"
                 />
@@ -254,13 +279,13 @@ const Payment = () => {
                   </div>
                 )}
               </div>
+
               <div>
                 <label className="card-name" htmlFor="cardholdername">
                   Card Holder Name
                 </label>
                 <input
                   type="text"
-                  name="cardholdername"
                   placeholder="Card Holder Name"
                   className={`card-number ${
                     errors.cardholdername ? "is-invalid" : ""
@@ -269,7 +294,7 @@ const Payment = () => {
                     required: true,
                     pattern: {
                       value: /^[A-Za-z]+(?:\s[A-Za-z]+)*$/,
-                      message: "Enter Valid Name",
+                      message: "Enter a valid name",
                     },
                   })}
                 />
@@ -282,7 +307,7 @@ const Payment = () => {
                 )}
               </div>
             </div>
-          ) : null}
+          )}
 
           <div className="paybtn">
             <button type="submit" className="payment-button">
@@ -294,4 +319,5 @@ const Payment = () => {
     </div>
   );
 };
+
 export default Payment;

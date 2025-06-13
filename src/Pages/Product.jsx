@@ -1,24 +1,25 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext } from "react";
 import { ShopContext } from "../Contexts/ShopContext";
-import { data, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Breadcrum from "../Components/Breadcrums/Breadcrum";
 import ProductDisplay from "../Components/Productdisplay/ProductDisplay";
 import DescriptionBox from "../Components/DescriptionBox/DescriptionBox";
 import RelatedProducts from "../Components/RelatedProducts/RelatedProducts";
 
 const Product = () => {
-  // const [product, setProducts] = useState([]);
-  // useEffect(() => {
-  //   AllProduct();
-  // }, []);
-  // const AllProduct = () => {
-  //   fetch("http://localhost:4000/products")
-  //     .then((res) => res.json)
-  //     .then((data) => console.log(data));
-  // };
-  const { all_products } = useContext(ShopContext);
+  const { allProducts } = useContext(ShopContext);
   const { productId } = useParams();
-  const product = all_products.find((e) => e.id === Number(productId));
+
+  // Defensive: wait for products to load
+  if (!allProducts || allProducts.length === 0) {
+    return <div>Loading...</div>;
+  }
+
+  const product = allProducts.find((e) => e.id === Number(productId));
+  if (!product) {
+    return <div>Product not found.</div>;
+  }
+
   return (
     <div>
       <Breadcrum product={product} />

@@ -1,21 +1,22 @@
-import { Children, createContext, useEffect, useState } from "react";
+import { children, createContext, useEffect, useState } from "react";
+
 // import all_product from "../Components/assets/all_product";
-import {
-  getProductsFromStorage,
-  saveProductsToStorage,
-} from "../Utils/Storage";
 
 const ProductContext = createContext([]);
 
 const ProductContextProvider = ({ children }) => {
-  const [allProducts, setAllProducts] = useState();
+  // const [products, setProducts] = useState([]);
+  const [allProducts, setAllProducts] = useState([]);
   useEffect(() => {
-    allProductsList();
+    productList();
+    // UpdateProductList();
   }, []);
-  const allProductsList = () => {
+
+  const productList = () => {
     fetch("http://localhost:4000/products")
       .then((res) => res.json())
       .then((data) => setAllProducts(data));
+    // .then(console.log);
   };
 
   // Save to localStorage whenever allProducts changes

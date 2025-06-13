@@ -69,6 +69,9 @@ const ProductDisplay = (props) => {
             <div>XXl</div>
           </div>
         </div>
+        <div className="productdisplay-right-price-new">
+          {product.stocks} Product left
+        </div>
         <button
           onClick={() => {
             addToCart(product.id);

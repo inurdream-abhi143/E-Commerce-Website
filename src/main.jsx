@@ -12,16 +12,16 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 createRoot(document.getElementById("root")).render(
-  <ShopContextProvider>
+  <ProductContextProvider>
     <ShippingContextProvider>
       <PaymentContextProvider>
         <LoginContextProvider>
-          <ProductContextProvider>
+          <ShopContextProvider>
             <App />
             <ToastContainer />
-          </ProductContextProvider>
+          </ShopContextProvider>
         </LoginContextProvider>
       </PaymentContextProvider>
     </ShippingContextProvider>
-  </ShopContextProvider>
+  </ProductContextProvider>
 );

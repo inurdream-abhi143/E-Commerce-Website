@@ -5,33 +5,33 @@ import dropdown_icon from "../Components/assets/dropdown_icon.png";
 import Item from "../Components/Items/Item";
 
 const ShopCategory = (props) => {
-  useEffect(() => {
-    getProduct();
-  }, []);
-  const [product, setProduct] = useState([]);
-  const getProduct = () => {
-    fetch("http://localhost:4000/products")
-      .then((res) => res.json())
-      .then((data) => {
-        setProduct(data);
-      });
-  };
+  // useEffect(() => {
+  //   getProduct();
+  // }, []);
+  // const [product, setProduct] = useState([]);
+  // const getProduct = () => {
+  //   fetch("http://localhost:4000/products")
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setProduct(data);
+  //     });
+  // };
   // console.log("All products", product);
-  const { all_products } = useContext(ShopContext);
+  const { allProducts } = useContext(ShopContext);
   return (
     <div className="shopCategory">
       <img className="shopcategory-banner" alt="" src={props.banner} />
       <div className="shopcategory-indexSort">
         <p>
           <span>Showing 1-12</span>
-          {` Out ${product.length} products`}
+          {` Out ${allProducts.length} products`}
         </p>
         <div className="shopcategory-sort">
           Sort by <img src={dropdown_icon} alt="" />
         </div>
       </div>
       <div className="shopcategory-products">
-        {product.map((item, i) => {
+        {allProducts.map((item, i) => {
           if (props.category === item.category) {
             return (
               <Item

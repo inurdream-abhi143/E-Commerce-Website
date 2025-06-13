@@ -9,13 +9,14 @@ import RelatedProducts from "../Components/RelatedProducts/RelatedProducts";
 const Product = () => {
   const { allProducts } = useContext(ShopContext);
   const { productId } = useParams();
-
+  // console.log("all the product", allProducts);
+  // console.log("product id", productId);
   // Defensive: wait for products to load
   if (!allProducts || allProducts.length === 0) {
     return <div>Loading...</div>;
   }
 
-  const product = allProducts.find((e) => e.id === Number(productId));
+  const product = allProducts.find((e) => e.id == productId);
   if (!product) {
     return <div>Product not found.</div>;
   }

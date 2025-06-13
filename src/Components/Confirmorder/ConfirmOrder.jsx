@@ -10,7 +10,7 @@ import { v4 as uuidv4 } from "uuid";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
-  const { getTotalCartAmount, all_products, cartItems, clearCartItem } =
+  const { getTotalCartAmount, allProducts, cartItems, clearCartItem } =
     useContext(ShopContext);
   const { shippingInfo } = useContext(ShippingContext);
   // console.log("payment info-c", paymentInfo);
@@ -57,7 +57,7 @@ const ConfirmOrder = () => {
         }),
         paymentDate: paymentInfo.paymentDate,
       },
-      products: all_products
+      products: allProducts
         .filter((e) => cartItems[e.id] > 0)
         .map((e) => ({
           name: e.name,
@@ -138,7 +138,7 @@ const ConfirmOrder = () => {
                 </tr>
               </thead>
               <tbody>
-                {all_products.map((e) => {
+                {allProducts.map((e) => {
                   if (cartItems[e.id] > 0) {
                     return (
                       <tr key={e.id}>

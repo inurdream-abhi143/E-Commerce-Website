@@ -14,7 +14,7 @@ const Payment = () => {
   const { shippingInfo } = useContext(ShippingContext);
   // initialize the payment context
   const { setPaymentInfo } = useContext(PaymentContext);
-  const { getTotalCartAmount, all_products, cartItems } =
+  const { getTotalCartAmount, allProducts, cartItems } =
     useContext(ShopContext);
   const {
     register,
@@ -111,7 +111,7 @@ const Payment = () => {
           <p>Price</p>
           <p>SubTotal</p>
         </div>
-        {all_products.map((e) => {
+        {allProducts.map((e) => {
           if (cartItems[e.id] > 0) {
             return (
               <div key={e.id}>

@@ -6,14 +6,14 @@ import { saveOrderToLocalStorage } from "../../Utils/Storage";
 import "./ConfirmOrder.css";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { v4 as uuidv4 } from "uuid";
+// import { v4 as uuidv4 } from "uuid";
 
 const ConfirmOrder = () => {
   const { paymentInfo } = useContext(PaymentContext);
   const { getTotalCartAmount, allProducts, cartItems, clearCartItem } =
     useContext(ShopContext);
   const { shippingInfo } = useContext(ShippingContext);
-  // console.log("payment info-c", paymentInfo);
+  console.log("payment info-c", paymentInfo);
 
   const CardNumber = paymentInfo.cardnumber;
   // console.log("CardNumber", CardNumber);
@@ -23,8 +23,10 @@ const ConfirmOrder = () => {
       : "";
 
   //   Total amount calculation
-  const totalAmount =
-    getTotalCartAmount() + paymentInfo.shippingCost - paymentInfo.discount;
+  // const totalAmount = paymentInfo.find((amount) => {
+  //   return amount.totalAmount;
+  // });
+  // getTotalCartAmount() + paymentInfo.shippingCost - paymentInfo.discount;
   const customerPhone = shippingInfo.mobile;
   const customerEmail = shippingInfo.email;
   const customerAddress = `${shippingInfo.address}, ${shippingInfo.city}, ${shippingInfo.state}, ${shippingInfo.pincode}`;
@@ -160,25 +162,36 @@ const ConfirmOrder = () => {
             </p>
 
             <p>
-              Shipping Cost:{" "}
+              Shipping Cost:
               <span className="amount">${paymentInfo.shippingCost || 0}</span>
             </p>
 
             <p>
-              Discount:{" "}
+              Discount:
               <span className="amount">${paymentInfo.discount || 0}</span>
             </p>
+            {paymentInfo.taxBreakdown &&
+              paymentInfo.taxBreakdown.length > 0 &&
+              paymentInfo.taxBreakdown.map((tax, idx) => (
+                <p key={idx}>
+                  Tax ({tax.taxName || "N/A"} - {tax.taxPercent || 0}%):
+                  <span className="amount">
+                    ${tax.taxAmount?.toFixed(2) || "0.00"}
+                  </span>
+                </p>
+              ))}
 
             <hr />
 
             <p>
-              Total Amount: <span className="amount">${totalAmount || 0}</span>
+              Total Amount:
+              <span className="amount">${paymentInfo.TotalAmount || 0}</span>
             </p>
           </div>
         </div>
 
         <button className="go-to-home" onClick={handleSaveOrder}>
-          Go To Home{" "}
+          Go To Home
         </button>
         <Link to="/orderfail" className="order-failbtn1">
           <button className="order-failbtn">Order-Fail</button>

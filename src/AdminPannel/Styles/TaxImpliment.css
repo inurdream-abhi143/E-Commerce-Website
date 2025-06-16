@@ -39,7 +39,9 @@
   gap: 12px;
   width: 100%;
 }
-
+/* .taxform-field::placeholder {
+  color: #ffe066;
+} */
 .taxform-field label {
   color: #ffe066;
   font-weight: 600;

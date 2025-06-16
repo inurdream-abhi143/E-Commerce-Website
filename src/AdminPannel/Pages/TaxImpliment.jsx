@@ -10,7 +10,11 @@ const TaxImpliment = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm();
+  } = useForm({
+    defaultValues: {
+      tax_for: "Domestic",
+    },
+  });
 
   // const handleTax = (data) => {
   //   const tax = {
@@ -21,7 +25,8 @@ const TaxImpliment = () => {
   //   reset(); // Optional: Clear form after submission
   // };
   useEffect(() => {
-    TaxList();
+    // TaxList();
+    getTaxList();
   }, []);
 
   const TaxList = () => {
@@ -33,6 +38,7 @@ const TaxImpliment = () => {
     const tax = {
       name: data.taxType,
       taxpercent: parseFloat(data.taxPercent),
+      origin: data.tax_for,
     };
 
     NewTaxList(tax); // send it to server
@@ -52,7 +58,8 @@ const TaxImpliment = () => {
         return res.json();
       })
       .then((data) => {
-        toast.success("✅ Tax added successfully:", data);
+        toast.success(`✅ Tax "${tax.name}" added!`);
+
         TaxList(); // refresh list
       })
       .catch((err) => {
@@ -60,6 +67,11 @@ const TaxImpliment = () => {
       });
   };
 
+  const getTaxList = () => {
+    fetch("http://localhost:4000/Taxes")
+      .then((res) => res.json())
+      .then((data) => setTaxList(data));
+  };
   return (
     <div className="container">
       <form onSubmit={handleSubmit(handleTax)} className="tax-form">
@@ -88,6 +100,16 @@ const TaxImpliment = () => {
           {errors.taxPercent && (
             <p className="error">{errors.taxPercent.message}</p>
           )}
+          <label htmlFor="tax_for">Tax For</label>
+          <select
+            className="taxInput-field"
+            {...register("tax_for", { required: "Tax Origin Required" })}
+            placeholder="Tax for Origin "
+          >
+            <option>Domestic</option>
+            <option>International</option>
+          </select>
+          {errors.tax_for && <p className="error">{errors.tax_for.message}</p>}
 
           <button type="submit" className="taxBtn">
             Add Tax
@@ -101,6 +123,7 @@ const TaxImpliment = () => {
               <th>Id</th>
               <th>Tax Name</th>
               <th>Tax Type</th>
+              <th>Tax for Origin</th>
             </tr>
           </thead>
           <tbody>
@@ -110,6 +133,7 @@ const TaxImpliment = () => {
                   <td>{tax.id}</td>
                   <td>{tax.name}</td>
                   <td>{tax.taxpercent}</td>
+                  <td>{tax.origin}</td>
                 </tr>
               );
             })}

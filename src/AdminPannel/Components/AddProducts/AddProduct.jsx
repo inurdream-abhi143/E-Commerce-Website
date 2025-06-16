@@ -18,10 +18,11 @@ const AddProduct = () => {
       productName: "",
       productCategory: "men",
       productDescription: "",
-      productPrice: "",
-      productDiscountPrice: "",
-      productStocks: "",
+      productPrice: "0",
+      productDiscountPrice: "0",
+      productStocks: "0",
       productImage: "",
+      productOrigin: "Domestic",
     },
   });
 
@@ -36,7 +37,6 @@ const AddProduct = () => {
     reader.onload = () => {
       const base64Image = reader.result;
       const new_product = {
-        id: allProducts.length + 1,
         name: data.productName,
         category: data.productCategory,
         image: base64Image,
@@ -44,6 +44,7 @@ const AddProduct = () => {
         // description: data.productDescription,
         stocks: Number(data.productStocks),
         old_price: Number(data.productPrice),
+        Origin: data.productOrigin,
       };
 
       // // console.log(data);
@@ -208,6 +209,25 @@ const AddProduct = () => {
               {...register("productImage", { required: true })}
             />
             {errors.productImage && (
+              <div className="error">This Field is Required</div>
+            )}
+          </div>
+          <div className="formgrid-group">
+            <label htmlFor="productOrigin" className="product-label">
+              Product Origin
+            </label>
+            <select
+              name="productOrigin"
+              placeholder="Select Category"
+              className={`product-field ${
+                errors.productCategory ? "is-invalid" : ""
+              }`}
+              {...register("productOrigin", { required: true })}
+            >
+              <option value="Domestic">Domestic</option>
+              <option value="International">International</option>
+            </select>
+            {errors.productOrigin && (
               <div className="error">This Field is Required</div>
             )}
           </div>

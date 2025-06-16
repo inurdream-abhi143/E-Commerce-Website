@@ -144,6 +144,7 @@ const Stocks = () => {
               <th>Price</th>
               <th>Discount Price</th> {/* Fixed spelling */}
               <th>Stock</th>
+              <th>Product Origin</th>
               <th>Add Stocks</th>
             </tr>
           </thead>
@@ -180,6 +181,7 @@ const Stocks = () => {
                       product.stocks
                     )}
                   </td>
+                  <td>{product.origin}</td>
                   {/* <td>{product.image}</td> */}
                   <td>
                     <input

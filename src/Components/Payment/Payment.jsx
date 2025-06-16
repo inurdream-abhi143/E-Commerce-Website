@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 import { ShippingContext } from "../../Contexts/ShippingContext";
 import { ShopContext } from "../../Contexts/ShopContext";
 import "./Payment.css";
@@ -9,6 +9,7 @@ import { toast } from "react-toastify";
 
 const Payment = () => {
   const navigate = useNavigate();
+  const [taxDetails, setTaxDetails] = useState([]);
   const { shippingInfo } = useContext(ShippingContext);
   const { setPaymentInfo } = useContext(PaymentContext);
   const { getTotalCartAmount, allProducts, cartItems } =
@@ -52,8 +53,8 @@ const Payment = () => {
   };
 
   const ShippingCost = getShippingMethod(shippingInfo?.shipping_method);
-  const TotalAmount =
-    getTotalCartAmount() + ShippingCost - (shippingInfo?.discount || 0);
+  // const TotalAmount =
+  //   getTotalCartAmount() + ShippingCost - (shippingInfo?.discount || 0);
 
   const handleStocks = async () => {
     try {
@@ -82,7 +83,7 @@ const Payment = () => {
 
       toast.success("Stocks updated successfully");
     } catch (error) {
-      console.error("Error updating stocks:", error);
+      toast.error("Error updating stocks:", error);
       toast.warning("There was an issue updating the product stock.");
     }
   };
@@ -99,6 +100,8 @@ const Payment = () => {
         paymentDate: currentDate,
         shippingCost: ShippingCost,
         discount: shippingInfo?.discount || 0,
+        TotalAmount: TotalAmount,
+        taxBreakdown,
       };
 
       setPaymentInfo(paymentData);
@@ -108,6 +111,86 @@ const Payment = () => {
       toast.warn("Please select a payment method");
     }
   };
+
+  useEffect(() => {
+    fetch("http://localhost:4000/Taxes")
+      .then((res) => res.json())
+      .then((data) => setTaxDetails(data));
+  }, []);
+
+  // console.log(taxDetails);
+  // get TaxProductInfo
+
+  const getProductTaxInfo = (product) => {
+    const origin = (product.origin || "").trim().toLowerCase();
+    const match = taxDetails.find(
+      (tax) => (tax.origin || "").trim().toLowerCase() === origin
+    );
+
+    const taxPercent = match ? Number(match.taxpercent) : 0;
+    const taxName = match ? match.name : "No Tax";
+    const qty = cartItems[product.id] || 0;
+    const subtotal = Number(product.new_price) * qty;
+    const taxAmount = (subtotal * taxPercent) / 100;
+
+    // console.log(`"tax name", ${taxName} ,"taxpercent,${taxPercent}`);
+
+    return {
+      taxName,
+      taxPercent,
+      taxAmount,
+      subtotal,
+    };
+  };
+
+  const totalTaxAmount = useMemo(() => {
+    let total = 0;
+    allProducts.forEach((product) => {
+      const qty = cartItems[product.id];
+      if (qty > 0) {
+        const { taxAmount } = getProductTaxInfo(product);
+        total += taxAmount;
+      }
+    });
+    return Number(total.toFixed(2));
+  }, [cartItems, allProducts, taxDetails]);
+
+  const cartSubTotal = useMemo(() => {
+    let total = 0;
+    allProducts.forEach((product) => {
+      const qty = cartItems[product.id] || 0;
+      total += Number(product.new_price) * qty;
+    });
+    return Number(total.toFixed(2));
+  }, [cartItems, allProducts]);
+
+  const TotalAmount = useMemo(() => {
+    const shipping = ShippingCost || 0;
+    const discount = Number(shippingInfo?.discount || 0);
+    return Number(
+      (cartSubTotal + totalTaxAmount + shipping - discount).toFixed(2)
+    );
+  }, [cartSubTotal, totalTaxAmount, ShippingCost, shippingInfo]);
+
+  //  for sharing tax details
+
+  const taxBreakdown = allProducts
+    .filter((product) => cartItems[product.id] > 0)
+    .map((product) => {
+      const qty = cartItems[product.id];
+      const { taxName, taxPercent, taxAmount, subtotal } =
+        getProductTaxInfo(product);
+      return {
+        productId: product.id,
+        productName: product.name,
+        quantity: qty,
+        price: product.new_price,
+        subtotal: subtotal,
+        taxName,
+        taxPercent,
+        taxAmount,
+      };
+    });
 
   return (
     <div className="payment">
@@ -135,20 +218,30 @@ const Payment = () => {
           <p>Product Quantity</p>
           <p>Price</p>
           <p>SubTotal</p>
+          <p>Tax</p>
         </div>
         {allProducts.map((e) => {
-          if (cartItems[e.id] > 0) {
+          const qty = cartItems[e.id];
+          if (qty > 0) {
+            const { taxName, taxPercent, taxAmount, subtotal } =
+              getProductTaxInfo(e);
             return (
               <div key={e.id}>
                 <div className="shipping-format shipping-format-main">
                   <p className="product-name">{e.name}</p>
-                  <p>{cartItems[e.id]}</p>
-                  <p>${e.new_price}</p>
-                  <p>${e.new_price * cartItems[e.id]}</p>
+                  <p>{qty}</p>
+                  <p>${Number(e.new_price).toFixed(2)}</p>
+                  <p>${subtotal.toFixed(2)}</p>
+                  <p>
+                    {taxPercent > 0
+                      ? `${taxName} (${taxPercent}%) = $${taxAmount.toFixed(2)}`
+                      : "No Tax"}
+                  </p>
                 </div>
               </div>
             );
           }
+          return null;
         })}
       </div>
 

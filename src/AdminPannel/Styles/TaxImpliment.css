@@ -151,7 +151,35 @@
   color: #f8fafc;
   vertical-align: middle;
 }
+.taxUpdate-field {
+  width: 100px;
+  height: 40px;
+  margin: 0 15px;
+  padding: 3px 4px;
+  border-radius: 10px;
+  background-color: #373f51;
+  color: white;
+  border: none;
+  outline: none;
+}
+.taxUpdate-field::placeholder {
+  color: white;
+}
 
+.taxUpdateBtn {
+  width: 60px;
+  height: 40px;
+  background-color: rgb(233, 82, 233);
+  color: #23272b;
+  font-weight: 500;
+  font-size: 1rem;
+  border: none;
+  border-radius: 7px;
+  padding: 9px 0;
+  margin-top: 6px;
+  cursor: pointer;
+  transition: background 0.14s, color 0.14s;
+}
 /* Responsive: Allow horizontal scroll */
 @media (max-width: 1100px) {
   .tax-form {

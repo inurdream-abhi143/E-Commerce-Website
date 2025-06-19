@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 
 const TaxImpliment = () => {
   const [taxList, setTaxList] = useState([]);
+  const [updateTax, setUpdateTax] = useState({}); // For updating tax
   const {
     register,
     handleSubmit,
@@ -25,8 +26,8 @@ const TaxImpliment = () => {
   //   reset(); // Optional: Clear form after submission
   // };
   useEffect(() => {
-    // TaxList();
-    getTaxList();
+    TaxList();
+    // getTaxList();
   }, []);
 
   const TaxList = () => {
@@ -61,16 +62,45 @@ const TaxImpliment = () => {
         toast.success(`✅ Tax "${tax.name}" added!`);
 
         TaxList(); // refresh list
+        reset(); // Clear form after submission
       })
       .catch((err) => {
         toast.error("❌ Error:", err.message);
       });
   };
 
-  const getTaxList = () => {
-    fetch("http://localhost:4000/Taxes")
-      .then((res) => res.json())
-      .then((data) => setTaxList(data));
+  // const getTaxList = () => {
+  //   fetch("http://localhost:4000/Taxes")
+  //     .then((res) => res.json())
+  //     .then((data) => setTaxList(data));
+  // };
+
+  const handleUpdateTax = (e) => {
+    const upDateedTax = Number(updateTax[e]);
+
+    const tax = {
+      taxpercent: upDateedTax,
+    };
+
+    // Get the updated tax value
+
+    fetch(`http://localhost:4000/Taxes/${e}`, {
+      method: "PATCH",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(tax),
+    })
+      .then((res) => {
+        if (!res.ok) throw new Error("Fialed to Update Tax");
+        return res.json();
+      })
+      .then((data) => {
+        toast.success("✅ Tax Updated Successfully");
+        TaxList();
+      })
+      .catch((err) => {
+        toast.error(`❌ Error: ${err.message}`);
+        console.error("Error updating tax:", err);
+      });
   };
   return (
     <div className="container">
@@ -124,16 +154,37 @@ const TaxImpliment = () => {
               <th>Tax Name</th>
               <th>Tax Type</th>
               <th>Tax for Origin</th>
+              <th>Update Tax</th>
             </tr>
           </thead>
           <tbody>
             {taxList.map((tax) => {
               return (
-                <tr>
+                <tr key={tax.id}>
                   <td>{tax.id}</td>
                   <td>{tax.name}</td>
                   <td>{tax.taxpercent}</td>
                   <td>{tax.origin}</td>
+                  <td>
+                    <input
+                      type="text"
+                      placeholder="Update Tax"
+                      className="taxUpdate-field"
+                      value={updateTax[tax.id] || ""} // Controlled input
+                      onChange={(e) =>
+                        setUpdateTax({ ...updateTax, [tax.id]: e.target.value })
+                      } // Update tax value
+                    />
+                    <button
+                      type="submit"
+                      className="taxUpdateBtn"
+                      onClick={() => {
+                        handleUpdateTax(tax.id);
+                      }}
+                    >
+                      Update
+                    </button>
+                  </td>
                 </tr>
               );
             })}

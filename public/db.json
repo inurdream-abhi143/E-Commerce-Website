@@ -395,13 +395,13 @@
     {
       "id": "b02d",
       "name": "Int ",
-      "taxpercent": 15,
+      "taxpercent": 12,
       "origin": "Domestic"
     },
     {
       "id": "3785",
       "name": "VAT",
-      "taxpercent": 14,
+      "taxpercent": 18,
       "origin": "International"
     }
   ]

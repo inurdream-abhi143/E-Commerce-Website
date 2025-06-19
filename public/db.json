@@ -348,7 +348,7 @@
       "new_price": 85,
       "old_price": 120.5,
       "origin": "International",
-      "stocks": 50
+      "stocks": 48
     },
     {
       "id": "36",
@@ -395,7 +395,7 @@
     {
       "id": "b02d",
       "name": "Int ",
-      "taxpercent": 12,
+      "taxpercent": 15,
       "origin": "Domestic"
     },
     {

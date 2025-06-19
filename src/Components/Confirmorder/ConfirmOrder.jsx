@@ -71,7 +71,7 @@ const ConfirmOrder = () => {
         subtotal: getTotalCartAmount(),
         discount: paymentInfo.discount || 0,
         shippingCost: paymentInfo.shippingCost || 0,
-        totalAmount,
+        totalAmount: paymentInfo.TotalAmount || 0,
       },
       createdAt: new Date().toLocaleString(),
     };

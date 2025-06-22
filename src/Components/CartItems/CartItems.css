@@ -14,12 +14,12 @@
   display: grid;
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
   align-items: center;
-  gap: 75px;
-  padding: 20px 0px;
+  gap: 72px;
+  padding: 17px 0px;
   color: #454545;
   font-size: 18px;
-  font-weight: 600;
-  word-break: break-word;
+  font-weight: 500;
+  /* word-break: break-word; */
 }
 
 .cartitems-format {
@@ -29,7 +29,7 @@
   grid-template-columns: 0.5fr 2fr 1fr 1fr 1fr 1fr;
   align-items: center;
   gap: 75px;
-  padding: 12px 0;
+  padding: 102px 0;
   word-break: break-word;
 }
 

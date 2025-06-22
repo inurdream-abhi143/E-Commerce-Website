@@ -4,6 +4,10 @@
   flex-direction: column;
   align-items: center;
   height: 100vh;
+  width: 100vw;
+  box-sizing: border-box;
+  padding: 0 12px;
+  background: #fffbe9;
 }
 .order-fail {
   display: flex;
@@ -11,51 +15,133 @@
   justify-content: center;
   align-items: center;
   margin: 0 20px;
-  padding: 0 20px;
+  padding: 0 32px;
   width: 700px;
+  max-width: 98vw;
   min-height: 250px;
-  /* border: 2px solid #eb863e; */
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.05);
+  transition: width 0.2s, padding 0.2s;
 }
 .order-fail h1 {
-  font-size: 42px;
+  font-size: 2.2rem;
   font-weight: 600;
   color: #3d3d3d;
-  margin: 10px;
-  padding: 10px;
+  margin: 10px 0 8px 0;
+  padding: 10px 0 0 0;
+  text-align: center;
 }
 
 .order-fail h2 {
-  font-size: 32px;
+  font-size: 1.5rem;
   font-weight: 500;
   color: #3d3d3d;
-  margin-bottom: 05px;
-  padding-bottom: 05px;
+  margin-bottom: 8px;
+  padding-bottom: 0;
+  text-align: center;
 }
 
 .order-fail h3 {
-  font-size: 22px;
+  font-size: 1.1rem;
   font-weight: 400;
   color: #3d3d3d;
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 18px;
+  padding-bottom: 0;
+  text-align: center;
 }
+
 .order-btns {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 10px;
-  padding: 0 10px;
+  margin: 14px 0 0 0;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 
 .order-fail-button {
-  width: 120px;
+  width: 140px;
+  min-width: 90px;
   height: 45px;
-  margin-right: 10px;
+  margin-right: 0;
   background-color: #695219;
   border-radius: 15px;
   color: white;
   cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  transition: background 0.2s, color 0.2s;
 }
 .order-fail-button:hover {
   background-color: #f19350;
+  color: #fff;
+}
+
+/* Medium screens */
+@media (max-width: 900px) {
+  .order-fail {
+    width: 95vw;
+    max-width: 95vw;
+    padding: 0 3vw;
+    border-radius: 14px;
+  }
+  .order-fail h1 {
+    font-size: 1.4rem;
+  }
+  .order-fail h2 {
+    font-size: 1.15rem;
+  }
+  .order-fail h3 {
+    font-size: 0.97rem;
+  }
+  .order-fail-button {
+    width: 38vw;
+    min-width: 90px;
+    font-size: 0.98rem;
+    border-radius: 10px;
+    height: 38px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .container {
+    padding: 0 2vw;
+    height: 100svh;
+  }
+  .order-fail {
+    width: 99vw;
+    max-width: 99vw;
+    padding: 0 2vw;
+    border-radius: 8px;
+    margin: 0;
+    min-height: 190px;
+  }
+  .order-fail h1 {
+    font-size: 0.98rem;
+    padding: 7px 0 0 0;
+  }
+  .order-fail h2 {
+    font-size: 0.89rem;
+    margin-bottom: 6px;
+  }
+  .order-fail h3 {
+    font-size: 0.81rem;
+    margin-bottom: 7px;
+  }
+  .order-btns {
+    gap: 7px;
+    margin-top: 10px;
+    flex-direction: column;
+  }
+  .order-fail-button {
+    width: 95vw;
+    max-width: 220px;
+    min-width: 70px;
+    height: 36px;
+    font-size: 0.95rem;
+    border-radius: 7px;
+  }
 }

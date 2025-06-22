@@ -2,80 +2,165 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   min-height: 100vh;
   width: 100%;
-  background: linear-gradient(180deg, #1e293b 80%, #7c3aed 100%);
+  background: linear-gradient(180deg, #232946 70%, #7c3aed 100%);
   color: #f8fafc;
   box-shadow: 2px 0 16px rgba(44, 62, 80, 0.09);
-  padding: 18px 0 18px 0;
+  padding: 24px 0 18px 0;
   position: sticky;
   top: 0;
+  z-index: 1200;
+  transition: all 0.2s;
 }
 
+.adminnavbar__toggle {
+  display: none;
+  position: fixed;
+  left: 18px;
+  top: 18px;
+  background: #ffe066;
+  color: #232946;
+  border: none;
+  border-radius: 10px;
+  font-size: 2rem;
+  width: 44px;
+  height: 44px;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 10px rgba(44, 62, 80, 0.13);
+  z-index: 1300;
+  transition: background 0.18s, color 0.18s;
+}
+.adminnavbar__toggle:active,
+.adminnavbar__toggle:focus {
+  background: #ffd700;
+  color: #7c3aed;
+}
+
+/* Overlay for mobile when sidebar is open */
+.adminnavbar__overlay {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .adminnavbar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100svh;
+    min-height: 100svh;
+    width: 80vw;
+    max-width: 340px;
+    min-width: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s cubic-bezier(0.77, 0, 0.18, 1.01);
+    box-shadow: 4px 0 16px rgba(44, 62, 80, 0.18);
+    border-radius: 0 20px 20px 0;
+    padding-top: 70px;
+    z-index: 1200;
+  }
+  .adminnavbar.open {
+    transform: translateX(0);
+  }
+  .adminnavbar__toggle {
+    display: flex;
+  }
+  .adminnavbar__overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    min-height: 100svh;
+    height: 100vh;
+    background: rgba(10, 10, 20, 0.38);
+    z-index: 1100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s;
+  }
+  .adminnavbar__overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Logo, menu, logout button with a modern look */
 .admin-logo {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 8px 0 0 0;
-  padding: 6px 0 0 0;
+  margin: 12px 0 10px 0;
+  padding: 4px 0 0 0;
+  border-bottom: 2px solid #44476a;
+  width: 100%;
 }
 .admin-logo .admin-icon {
-  font-size: 52px;
+  font-size: 58px;
   font-weight: 600;
-  margin-bottom: 3px;
+  margin-bottom: 7px;
+  color: #ffe066;
+  filter: drop-shadow(0 0 2px #212946);
 }
 .admin-logo h2 {
-  font-size: 2.1rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
+  font-size: 2.15rem;
+  font-weight: 800;
+  letter-spacing: 2px;
   color: #ffe066;
-  margin: 0;
+  margin: 0 0 10px 0;
+  text-shadow: 0 2px 8px #23294644;
 }
 
 .adminnav-menu ul {
-  margin-top: 32px;
+  margin-top: 36px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 36px;
   padding: 0;
+  width: 100%;
 }
 .adminnav-link {
   list-style: none;
   font-size: 20px;
   cursor: pointer;
+  width: 100%;
+  text-align: center;
   transition: transform 0.13s, color 0.13s;
 }
 .adminnav-link .a {
   text-decoration: none;
   color: #f8fafc;
-  transition: color 0.15s;
-  font-weight: 500;
+  font-weight: 600;
   letter-spacing: 1px;
-  padding: 4px 20px;
+  padding: 10px 0;
   border-radius: 8px;
   display: block;
+  width: 100%;
+  transition: background 0.18s, color 0.18s, font-size 0.15s;
 }
 .adminnav-link .a.active,
 .adminnav-link .a:focus,
 .adminnav-link .a:hover {
-  color: #ffe066;
-  background: #323a4d;
-  font-size: 21px;
+  color: #232946;
+  background: #ffe066;
+  font-size: 1.16em;
+  box-shadow: 0 4px 18px #ffe06644;
 }
 
 .adminlog-out {
   display: flex;
-  margin: 0 0 6px 0;
+  margin: 0 0 14px 0;
   padding: 0;
   width: 100%;
   justify-content: center;
 }
 
 .adminlog-out button {
-  width: 110px;
+  width: 120px;
   height: 44px;
   outline: none;
   border: none;
@@ -85,54 +170,83 @@
   color: #23272b;
   font-size: 1.15rem;
   font-weight: 700;
-  box-shadow: 0 2px 8px rgba(44, 62, 80, 0.07);
-  transition: background 0.14s, color 0.14s;
+  box-shadow: 0 2px 12px rgba(44, 62, 80, 0.09);
+  transition: background 0.14s, color 0.14s, box-shadow 0.18s;
 }
 .adminlog-out button:hover {
   background: #ffe066;
   color: #7c3aed;
+  box-shadow: 0 4px 18px #ffe06644;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for smaller screens */
 @media (max-width: 990px) {
-  .adminnavbar {
-    min-width: 130px;
-    padding: 8px 0 8px 0;
-  }
   .admin-logo .admin-icon {
-    font-size: 44px;
+    font-size: 42px;
   }
   .admin-logo h2 {
     font-size: 1.3rem;
   }
   .adminnav-menu ul {
-    gap: 24px;
+    gap: 22px;
+    margin-top: 20px;
   }
   .adminnav-link {
-    font-size: 17px;
+    font-size: 16px;
+  }
+  .adminnav-link .a {
+    padding: 8px 0;
+    font-size: 16px;
   }
 }
 
-@media (max-width: 600px) {
-  .adminnavbar {
-    min-width: 80px;
-    padding: 3px 0 3px 0;
-  }
+@media (max-width: 700px) {
   .admin-logo .admin-icon {
-    font-size: 32px;
+    font-size: 28px;
   }
   .admin-logo h2 {
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
   .adminnav-menu ul {
-    gap: 14px;
+    gap: 9px;
+    margin-top: 10px;
   }
   .adminnav-link {
-    font-size: 14px;
+    font-size: 13px;
+  }
+  .adminnav-link .a {
+    padding: 7px 0;
+    font-size: 13px;
+    border-radius: 5px;
   }
   .adminlog-out button {
-    width: 90px;
-    height: 36px;
-    font-size: 1rem;
+    width: 70px;
+    height: 30px;
+    font-size: 0.85rem;
+    border-radius: 7px;
+  }
+}
+
+@media (max-width: 500px) {
+  .admin-logo .admin-icon {
+    font-size: 22px;
+  }
+  .admin-logo h2 {
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+  }
+  .adminnav-link {
+    font-size: 10px;
+  }
+  .adminnav-link .a {
+    padding: 5px 0;
+    font-size: 10px;
+    border-radius: 3px;
+  }
+  .adminlog-out button {
+    width: 52px;
+    height: 23px;
+    font-size: 0.7rem;
+    border-radius: 3px;
   }
 }

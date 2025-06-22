@@ -1,33 +1,101 @@
-.item{
-    width: 350px;
+.item {
+  width: 340px;
+  min-width: 0;
+  max-width: 96vw;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.04);
+  padding: 12px 10px 16px 10px;
+  box-sizing: border-box;
+  text-align: left;
+  transition: box-shadow 0.2s, transform 0.3s;
+  margin: 0 auto;
+}
+.item p {
+  margin: 10px 0 4px 0;
+  color: #222;
+  font-size: 1.08rem;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.item img {
+  width: 100%;
+  max-width: 310px;
+  height: 220px;
+  object-fit: contain;
+  border-radius: 8px;
+  background: #f9f9f9;
+  display: block;
+  margin: 0 auto;
+  transition: box-shadow 0.2s;
+}
+.item-prices {
+  display: flex;
+  gap: 18px;
+  align-items: center;
+  margin-top: 6px;
+}
+.item-price-new {
+  color: #374151;
+  font-size: 1.08rem;
+  font-weight: 600;
+}
+.item-price-old {
+  color: #8c8c8c;
+  font-size: 1.08rem;
+  font-weight: 600;
+  text-decoration: line-through;
+}
+.item:hover {
+  transform: scale(1.045);
+  box-shadow: 0 8px 36px 0 rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.2s, transform 0.3s;
+}
 
-}
-.item p{
-    margin: 6px 0;
-
-}
-.item img{
-    width: 320px;
-    
-}
-.item-prices{
-    display: flex;
-    gap:20px
-}
-
-.item-price-new{
-    color: #374151;
-    font-size: 18px;
-    font-weight: 600;
-}
-.item-price-old{
-    color: #8c8c8c;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: line-through;
+/* Tablet screens */
+@media (max-width: 900px) {
+  .item {
+    width: 44vw;
+    max-width: 96vw;
+    min-width: 150px;
+    padding: 8px 4px 14px 4px;
+  }
+  .item img {
+    max-width: 98vw;
+    height: 140px;
+  }
+  .item p {
+    font-size: 1rem;
+  }
+  .item-prices {
+    gap: 11px;
+  }
 }
 
-.item:hover{
-    transform: scale(1.05);
-    transition: 0.6s;
+/* Mobile screens */
+@media (max-width: 600px) {
+  .item {
+    width: 98vw;
+    max-width: 99vw;
+    min-width: 0;
+    padding: 7px 2vw 12px 2vw;
+    border-radius: 8px;
+  }
+  .item img {
+    max-width: 94vw;
+    height: 90px;
+    border-radius: 5px;
+  }
+  .item p {
+    font-size: 0.98rem;
+  }
+  .item-price-new,
+  .item-price-old {
+    font-size: 0.97rem;
+  }
+  .item-prices {
+    gap: 7px;
+  }
 }

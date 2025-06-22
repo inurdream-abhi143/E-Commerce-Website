@@ -5,6 +5,9 @@
   justify-content: center;
   margin: 32px auto;
   width: 95%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
 }
 
 .addproducts-form {
@@ -18,6 +21,7 @@
   max-width: 540px;
   border-radius: 18px;
   box-shadow: 0 4px 30px rgba(50, 60, 90, 0.19);
+  box-sizing: border-box;
 }
 
 .addproducts-form h1 {
@@ -33,6 +37,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 22px;
   width: 100%;
+  box-sizing: border-box;
 }
 
 .formgrid-group {
@@ -61,6 +66,7 @@
   padding: 0 15px;
   font-size: 1rem;
   transition: border-color 0.13s, box-shadow 0.13s;
+  box-sizing: border-box;
 }
 .product-field:focus {
   border-color: #7c3aed;
@@ -98,11 +104,7 @@ input[type="file"].is-invalid {
   border-color: #ff4d4f;
   background: #fff0f1;
 }
-
-input[type="file"]::-webkit-file-upload-button {
-  display: none;
-}
-
+input[type="file"]::-webkit-file-upload-button,
 input[type="file"]::file-selector-button {
   display: none;
 }
@@ -112,6 +114,7 @@ input[type="file"]::file-selector-button {
   display: flex;
   justify-content: center;
   gap: 18px;
+  flex-wrap: wrap;
 }
 
 .submit-btn,
@@ -137,7 +140,6 @@ input[type="file"]::file-selector-button {
 .submit-btn:hover {
   background: linear-gradient(90deg, #5d2ea6 60%, #7c3aed 100%);
 }
-
 .reset-btn {
   background-color: #ff4d4f;
   color: white;
@@ -152,6 +154,7 @@ input[type="file"]::file-selector-button {
 @media (max-width: 900px) {
   .addproducts-formgrid {
     grid-template-columns: 1fr;
+    gap: 18px;
   }
   .formgrid-group-btn {
     grid-column: span 1;
@@ -161,6 +164,56 @@ input[type="file"]::file-selector-button {
   }
 }
 
+/* Extra mobile tweaks */
+@media (max-width: 600px) {
+  .addproducts {
+    width: 99vw;
+    margin: 18px 0;
+    padding: 0;
+  }
+  .addproducts-form {
+    padding: 10vw 2vw 8vw 2vw;
+    max-width: 100vw;
+    border-radius: 11px;
+  }
+  .addproducts-form h1 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+  }
+  .formgrid-group {
+    min-width: 0;
+  }
+  .product-label {
+    font-size: 0.93rem;
+    margin-bottom: 4px;
+  }
+  .product-field,
+  input[type="file"] {
+    height: 36px;
+    font-size: 0.94rem;
+    padding: 0 8px;
+    border-radius: 7px;
+  }
+  .submit-btn,
+  .reset-btn {
+    padding: 9px 22px;
+    font-size: 0.95rem;
+    border-radius: 7px;
+  }
+}
+
+@media (max-width: 400px) {
+  .addproducts-form {
+    padding: 5vw 1vw 5vw 1vw;
+    border-radius: 6px;
+  }
+  .formgrid-group-btn {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
+
+/* Placeholder color */
 ::-webkit-input-placeholder,
 ::-moz-placeholder,
 :-ms-input-placeholder,

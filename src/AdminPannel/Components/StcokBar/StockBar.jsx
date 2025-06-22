@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { RxReset } from "react-icons/rx";
-import "./StockBar.css";
+import "../Maincss/header.css";
 
 const StockBar = (props) => {
   const {
@@ -18,30 +18,30 @@ const StockBar = (props) => {
     handleResetFilter();
   };
   return (
-    <div className="stock-bar">
-      <div className="customer-section1">
-        <h2>Stocks Management</h2>
+    <div className="header-bar">
+      <div>
+        <h2 className="header-bar__title">Stocks Management</h2>
       </div>
-      <div className="customer-section2">
+      <div className="header-bar__actions">
         <input
-          className="search-bar"
+          className="header-bar__search-input"
           type="text"
           name="search-bar"
           value={filterCategory}
-          onChange={(e) => {
-            setFilterCategory(e.target.value);
-          }}
+          onChange={(e) => setFilterCategory(e.target.value)}
           placeholder="Search for Stocks by Category"
         />
-        <button className="searchbtn" onClick={handleFilter}>
-          <CiSearch className="search" />
+        <button className="header-bar__btn" onClick={handleFilterStocks}>
+          <CiSearch className="header-bar__icon" />
         </button>
-        <button className="searchbtn" onClick={resetFilter}>
-          <RxReset className="search" />
+        <button
+          className="header-bar__btn header-bar__btn--reset"
+          onClick={handleResetFilter}
+        >
+          <RxReset className="header-bar__icon" />
         </button>
       </div>
     </div>
   );
 };
-
 export default StockBar;

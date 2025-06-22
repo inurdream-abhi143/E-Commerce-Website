@@ -1,27 +1,97 @@
-.popular{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.popular {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 60vh;
+  padding: 36px 0 28px 0;
+  width: 100%;
+}
+
+.popular h1 {
+  color: #171717;
+  font-size: 50px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+
+.popular hr {
+  width: 200px;
+  height: 6px;
+  border-radius: 10px;
+  background-color: #252525;
+  margin: 12px 0 0 0;
+  border: none;
+}
+
+/* Responsive grid for items */
+.popular-item {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 32px;
+  width: 90vw;
+  max-width: 1500px;
+  justify-items: center;
+}
+
+/* Card styles (optional, adjust as needed) */
+.popular-item > * {
+  width: 100%;
+  max-width: 320px;
+  min-width: 220px;
+}
+
+/* Laptop screens (1200px and below) */
+@media (max-width: 1200px) {
+  .popular h1 {
+    font-size: 38px;
+  }
+  .popular-item {
+    gap: 22px;
+    margin-top: 32px;
+    width: 98vw;
+  }
+}
+
+/* Small laptop/tablet (900px and below) */
+@media (max-width: 900px) {
+  .popular {
+    padding: 24px 0 16px 0;
+  }
+  .popular h1 {
+    font-size: 28px;
+  }
+  .popular-item {
+    gap: 16px;
+    margin-top: 22px;
+  }
+}
+
+/* Tablet (700px and below) */
+@media (max-width: 700px) {
+  .popular h1 {
+    font-size: 20px;
+  }
+  .popular-item {
     gap: 10px;
-    height: 90vh;
+    margin-top: 12px;
+    width: 100vw;
+    padding: 0 2vw;
+  }
 }
 
-.popular h1{
-    color: #171717;
-    font-size: 50px;
-    font-weight: 600;
-}
-.popular hr{
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
-    background-color: #252525;
-
-}
-
-.popular-item{
-    margin-top: 50px;
-    display: flex;
-    gap: 30px;
-
+/* Mobile (600px and below): single column stack */
+@media (max-width: 600px) {
+  .popular {
+    padding: 16px 0 8px 0;
+  }
+  .popular-item {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 10px;
+    width: 100vw;
+    padding: 0 1vw;
+  }
 }

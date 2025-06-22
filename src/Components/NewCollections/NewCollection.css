@@ -1,29 +1,104 @@
-.newcollections{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
+.newcollections {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 100px;
+  width: 100%;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.newcollections h1 {
+  color: #171717;
+  font-size: 48px;
+  font-weight: 600;
+  margin: 0;
+  text-align: center;
+}
+.newcollections hr {
+  width: 200px;
+  height: 6px;
+  border-radius: 10px;
+  background-color: #252525;
+  margin: 12px 0 0 0;
+  border: none;
+}
+
+.collections {
+  margin: 40px auto 0 auto;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 36px;
+  width: 100%;
+  max-width: 1400px; /* Grid never gets too wide */
+  justify-items: start; /* Cards align to the left of each grid cell */
+  align-items: start; /* All cards top-aligned */
+  box-sizing: border-box;
+}
+
+/* Card sizing for consistency and spacing */
+.collections > * {
+  width: 100%;
+  max-width: 320px;
+  min-width: 0; /* Avoids overflow, lets grid control sizing */
+  box-sizing: border-box;
+  margin: 0; /* Remove any default margin */
+}
+
+/* Large desktop (≤1800px) */
+@media (max-width: 1800px) {
+  .collections {
+    max-width: 1200px;
+    gap: 32px;
+  }
+}
+
+/* Laptop screens (≤1440px) */
+@media (max-width: 1440px) {
+  .newcollections h1 {
+    font-size: 38px;
+  }
+  .collections {
+    max-width: 1080px;
+    gap: 24px;
+  }
+}
+
+/* Laptops/tablets (≤1024px) */
+@media (max-width: 1024px) {
+  .newcollections h1 {
+    font-size: 28px;
+  }
+  .collections {
+    max-width: 800px;
+    gap: 16px;
+  }
+}
+
+/* Tablets (≤800px) */
+@media (max-width: 800px) {
+  .collections {
+    grid-template-columns: repeat(2, 1fr);
     gap: 10px;
-   margin-bottom: 100px;
+    max-width: 96vw;
+  }
 }
 
-.newcollections h1{
-    color: #171717;
-    font-size: 50px;
-    font-weight: 600;
-}
-.newcollections hr{
-    width: 200px;
-    height: 6px;
-    border-radius: 10px;
-    background-color: #252525;
-
-}
-
-.collections{
-    margin: 50px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap:30px;
-    
-
+/* Mobile (≤600px): single column */
+@media (max-width: 600px) {
+  .newcollections {
+    margin-bottom: 36px;
+  }
+  .newcollections h1 {
+    font-size: 17px;
+  }
+  .collections {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    margin-top: 8px;
+    max-width: 99vw;
+    padding: 0 1vw;
+  }
 }

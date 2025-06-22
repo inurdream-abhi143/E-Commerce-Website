@@ -1,22 +1,22 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
-import "./OrderBar.css";
-
+// import "./OrderBar.css";
+import "../Maincss/header.css";
 const OrderBar = ({ searchValue, onSearchChange, onSearch }) => (
-  <div className="order-bar">
-    <div className="order-section1">
-      <h2>Order Management</h2>
+  <div className="header-bar">
+    <div>
+      <h2 className="header-bar__title">Order Management</h2>
     </div>
-    <div className="order-section2">
+    <div className="header-bar__actions">
       <input
-        className="search-bar"
+        className="header-bar__search-input"
         type="text"
         value={searchValue}
         onChange={onSearchChange}
         placeholder="Search Orders by Customer Name"
       />
-      <button className="searchbtn" onClick={onSearch}>
-        <CiSearch className="search" />
+      <button className="header-bar__btn" onClick={onSearch}>
+        <CiSearch className="header-bar__icon" />
       </button>
     </div>
   </div>

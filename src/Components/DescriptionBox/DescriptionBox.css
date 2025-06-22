@@ -1,40 +1,85 @@
-.descriptionbox{
-margin: 120px 70px;
-
+.descriptionbox {
+  margin: 120px 70px;
+  box-sizing: border-box;
 }
 
-.descriptionbox-navigator{
-    display: flex;
+.descriptionbox-navigator {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0;
 }
 
-
-
-.descriptionbox-nav-box{
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 16px;
-    font-weight: 600px;
-    width: 170px;
-    height: 70px;
-    border: 1px solid #d0d0d0;
+.descriptionbox-nav-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 600;
+  width: 170px;
+  height: 70px;
+  border: 1px solid #d0d0d0;
+  background: #fff;
+  box-sizing: border-box;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
 }
 
-
-.descriptionbox-nav-box.fade{
-    background-color: #FBFBFB;
-    color: #555;
-
+.descriptionbox-nav-box.fade {
+  background-color: #fbfbfb;
+  color: #555;
 }
 
+.descriptionbox-description {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  border: 1px solid #d0d0d0;
+  padding: 48px;
+  padding-bottom: 70px;
+  font-size: 16px;
+  background: #fff;
+  margin-bottom: 12px;
+  box-sizing: border-box;
+}
 
-.descriptionbox-description{
-    display: flex;
+/* Tablet screens */
+@media (max-width: 900px) {
+  .descriptionbox {
+    margin: 60px 3vw;
+  }
+  .descriptionbox-description {
+    padding: 24px 2vw 35px 2vw;
+    font-size: 15px;
+  }
+  .descriptionbox-nav-box {
+    width: 42vw;
+    min-width: 110px;
+    height: 48px;
+    font-size: 14px;
+  }
+}
+
+/* Mobile screens */
+@media (max-width: 600px) {
+  .descriptionbox {
+    margin: 16vw 1vw 6vw 1vw;
+    min-width: 0;
+  }
+  .descriptionbox-navigator {
     flex-direction: column;
-    gap: 25px;
-    border: 1px solid #d0d0d0;
-    padding: 48px;
-    padding-bottom: 70px;
-
+    gap: 0;
+  }
+  .descriptionbox-nav-box {
+    width: 100%;
+    min-width: 0;
+    height: 38px;
+    font-size: 13px;
+    border-radius: 0;
+  }
+  .descriptionbox-description {
+    padding: 10px 2vw 18px 2vw;
+    font-size: 13px;
+    gap: 13px;
+    border-radius: 0;
+  }
 }

@@ -1,54 +1,72 @@
 .confirmorder {
   display: flex;
-  /* flex-direction: column; */
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  min-height: 100vh;
+  width: 100vw;
+  padding: 36px 0 24px 0;
+  box-sizing: border-box;
+  background: #f4f2ee;
 }
 
 .Order-details {
   display: flex;
   flex-direction: column;
   border: 2px solid #ebebeb;
-
   width: 80%;
+  max-width: 900px;
+  min-width: 0;
   background-color: #f9f9f9;
+  border-radius: 22px;
+  box-shadow: 0 2px 24px 0 rgba(0, 0, 0, 0.04);
+  padding: 24px 28px 32px 28px;
+  box-sizing: border-box;
+  margin: 0 auto;
 }
 
 .Order-details h1 {
-  font-size: 30px;
-  font-weight: 600;
+  font-size: 2.1rem;
+  font-weight: 700;
   color: #3d3d3d;
   text-align: center;
   text-transform: capitalize;
+  margin-bottom: 16px;
 }
-.userinfo-C {
+.userinfo-C,
+.shippingdetails,
+.pricesummary {
   display: flex;
   flex-direction: column;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
   color: #3d3d3d;
-  margin: 0 10px;
-  padding: 0 10px;
+  margin: 0 0 12px 0;
+  padding: 0 8px;
+  gap: 3px;
 }
-.userinfo-C p {
+.userinfo-C p,
+.shippingdetails p {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 400;
 }
 
 .shippingdetails {
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
-  padding: 0 10px;
-  font-size: 18px;
-  font-weight: 700;
-  color: #3d3d3d;
+  font-weight: 600;
 }
+
 .shippingdetails p {
   margin-top: 5px;
-  font-size: 18px;
+  font-size: 17px;
 }
+.productdetails {
+  width: 100%;
+  margin: 0 0 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
 .producttable {
   width: 100%;
   margin-top: 2rem;
@@ -56,13 +74,14 @@
   min-height: 30vh;
   border: 2px solid #ebebeb;
   margin-bottom: 20px;
+  border-radius: 12px;
+  background: #fff;
 }
 
 .producttable table {
   width: 100%;
   border-collapse: collapse;
   text-align: left;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background-color: #f9f9f9;
 }
 
@@ -70,70 +89,141 @@
 .producttable td {
   padding: 12px 16px;
   border: 1px solid #ddd;
+  font-size: 16px;
 }
 
 .producttable th {
   background-color: #f0f0f0;
   color: #333;
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .producttable td {
   color: #555;
 }
+
 .pricesummary {
-  display: flex;
-  flex-direction: column;
-  margin: 0 10px;
-  padding: 0 10px;
+  margin: 0 0 0 0;
+  padding: 0 8px;
+  gap: 3px;
 }
 .pricesummary p {
   display: flex;
   justify-content: space-between;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   color: #3d3d3d;
+  margin: 4px 0;
 }
 
 .amount {
-  font-size: 22px;
+  font-size: 21px;
   font-weight: 700;
   color: #3d3d3d;
+  margin-left: 12px;
 }
-.go-to-home1 {
-  align-self: center;
-  text-decoration: none;
-}
-
-.go-to-home {
-  width: 150px;
-  height: 40px;
-  background-color: #eb863e;
-  border: none;
-  border-radius: 15px;
-  color: white;
-  font-size: 18px;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-  align-self: center;
-}
+.go-to-home,
 .order-failbtn {
-  width: 150px;
-  height: 40px;
+  width: 170px;
+  height: 44px;
   background-color: #eb863e;
   border: none;
   border-radius: 15px;
   color: white;
-  font-size: 18px;
+  font-size: 17px;
   font-weight: 600;
   cursor: pointer;
   text-align: center;
   align-self: center;
+  margin: 8px auto 0 auto;
+  transition: background 0.2s;
 }
-
+.go-to-home:hover,
+.order-failbtn:hover {
+  background: #cf7a32;
+}
 .order-failbtn1 {
   align-self: center;
-  margin: 15px 0;
-  padding: 10px 0;
+  margin: 8px 0 0 0;
+  padding: 0;
+}
+
+@media (max-width: 900px) {
+  .Order-details {
+    border-radius: 14px;
+    padding: 14px 2vw 18px 2vw;
+    width: 97vw;
+    max-width: 99vw;
+  }
+  .Order-details h1 {
+    font-size: 1.3rem;
+    margin-bottom: 7px;
+  }
+  .userinfo-C,
+  .shippingdetails,
+  .pricesummary {
+    font-size: 15px;
+    padding: 0 1vw;
+  }
+  .producttable th,
+  .producttable td {
+    padding: 8px 5px;
+    font-size: 14px;
+  }
+  .amount {
+    font-size: 17px;
+  }
+  .go-to-home,
+  .order-failbtn {
+    width: 98vw;
+    max-width: 220px;
+    height: 37px;
+    font-size: 15px;
+    border-radius: 8px;
+    margin-top: 6px;
+  }
+  .order-failbtn1 {
+    margin: 4px 0 0 0;
+  }
+}
+@media (max-width: 600px) {
+  .confirmorder {
+    padding: 8vw 0 6vw 0;
+    min-height: 100svh;
+  }
+  .Order-details {
+    padding: 7px 1vw 11px 1vw;
+    border-radius: 0;
+    width: 99vw;
+    min-width: 0;
+  }
+  .Order-details h1 {
+    font-size: 1.01rem;
+    margin-bottom: 4px;
+  }
+  .userinfo-C,
+  .shippingdetails,
+  .pricesummary {
+    font-size: 12px;
+    padding: 0 0.5vw;
+    gap: 2px;
+  }
+  .producttable th,
+  .producttable td {
+    padding: 4px 2px;
+    font-size: 11px;
+  }
+  .amount {
+    font-size: 13px;
+  }
+  .go-to-home,
+  .order-failbtn {
+    width: 98vw;
+    max-width: 99vw;
+    min-width: 70px;
+    height: 32px;
+    font-size: 0.99rem;
+    border-radius: 6px;
+    margin-top: 4px;
+  }
 }

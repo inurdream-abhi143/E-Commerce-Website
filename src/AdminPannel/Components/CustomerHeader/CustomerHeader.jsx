@@ -1,7 +1,8 @@
 import React from "react";
 import { CiSearch } from "react-icons/ci";
 import { RxReset } from "react-icons/rx";
-import "./CustomerHeader.css";
+// import "./CustomerHeader.css";
+import "../Maincss/header.css";
 
 const CustomerHeader = (props) => {
   const {
@@ -20,38 +21,36 @@ const CustomerHeader = (props) => {
   };
   const onFilterReset = () => {};
   return (
-    <div className="customerheader">
-      <div className="customer-section1">
-        <h2>Customer Management</h2>
+    <div className="header-bar">
+      <div>
+        <h2 className="header-bar__title">Customer Management</h2>
       </div>
-      <div className="customer-section2">
+      <div className="header-bar__actions">
         <input
-          className="search-bar"
+          className="header-bar__search-input"
           type="text"
           name="search-bar"
-          placeholder="Search for customer by Status"
+          placeholder="Search for customer by Name or Email"
           value={filterUsers}
-          onChange={(e) => {
-            setFilterUsers(e.target.value);
-          }}
+          onChange={(e) => setFilterUsers(e.target.value)}
         />
         <select
-          name="status"
           value={filterStatus}
-          onChange={(e) => {
-            setFilterStatus(e.target.value);
-          }}
-          className="drop-filed"
+          onChange={(e) => setFilterStatus(e.target.value)}
+          className="header-bar__select"
         >
           <option value="All">All</option>
           <option value="Banned">Banned</option>
           <option value="Active">Active</option>
         </select>
-        <button className="searchbtn" onClick={onUserFilter}>
-          <CiSearch className="search" />
+        <button className="header-bar__btn" onClick={onUserFilter}>
+          <CiSearch className="header-bar__icon" />
         </button>
-        <button className="searchbtn" onClick={onFilterReset}>
-          <RxReset className="search" />
+        <button
+          className="header-bar__btn header-bar__btn--reset"
+          onClick={onFilterReset}
+        >
+          <RxReset className="header-bar__icon" />
         </button>
       </div>
     </div>

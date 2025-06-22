@@ -1,88 +1,201 @@
+.Navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 16px;
+  box-shadow: 0 1px 3px -2px black;
+  background: #fff;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
 
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
 
- .Navbar{
-    display: flex;
-    justify-content: space-around;
-    padding: 16px;
-box-shadow: 0 1PX 3PX -2PX black ;
-    
- } 
- .nav-logo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.logo-name {
+  color: grey;
+  font-size: 24px;
+  font-weight: 800;
+}
 
- }  
- .logo-name{
-    color: grey;
-    font-size: 24px;
-    font-weight: 800;
- }
+.nav-menu ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 50px;
+  color: #626262;
+  font-size: 20px;
+  font-weight: 500;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
 
- .nav-menu ul{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 50px;
-    color: #626262;
-    font-size: 20px;
-    font-weight: 500;
-    list-style: none;
+.nav-menu li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 24px;
+  margin-right: 10px;
+  cursor: pointer;
+}
 
- }
- .nav-menu  li{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 10px;
-    font-size: 24px;
-    margin-right: 10px;
-    cursor: pointer;
+.bottom-line {
+  border: none;
+  width: 80%;
+  height: 3px;
+  border-radius: 10px;
+  background-color: orangered;
+}
 
- }
- 
- .bottom-line{
-    border: none;
-    width: 80%;
-    height: 3px;
-    border-radius: 10px;
-    background-color: orangered;
- }
- .nav-login-cart{
-    display: flex;
-    align-items: center;
+.nav-login-cart {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  font-size: 22px;
+}
+
+.btn {
+  width: 130px;
+  height: 60px;
+  border: none;
+  background-color: aqua;
+  border-radius: 25px;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.btn:active {
+  background-color: orangered;
+}
+
+.nav-cart-count {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -35px;
+  margin-left: -30px;
+  border-radius: 11px;
+  font-size: 14px;
+  background-color: red;
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+/* ===================== Responsive styles ===================== */
+
+@media (max-width: 1100px) {
+  .nav-menu ul {
     gap: 25px;
-    font-size: 22px;
- }
- .btn{
-    width: 130px;
-    height: 60px;
-    border: none;
-    background-color: aqua;
-    border-radius: 25px;
+    font-size: 18px;
+  }
+  .nav-menu li {
     font-size: 20px;
-    cursor: pointer;
- }
+    padding: 8px;
+  }
+  .logo-name {
+    font-size: 20px;
+  }
+}
 
- .btn:active{
-    background-color: orangered;
- }
- .nav-cart-count{
-    width: 22px;
+@media (max-width: 900px) {
+  .Navbar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+  .nav-menu ul {
+    gap: 12px;
+    font-size: 16px;
+  }
+  .nav-menu li {
+    font-size: 18px;
+    padding: 6px;
+  }
+  .logo-name {
+    font-size: 18px;
+  }
+  .btn {
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+  }
+  .nav-login-cart {
+    gap: 10px;
+    font-size: 18px;
+  }
+}
 
-    height: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: -35px;
-    margin-left: -30px;
-    border-radius: 11px;
+@media (max-width: 700px) {
+  .Navbar {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 10px 4vw;
+    gap: 10px;
+  }
+  .nav-logo {
+    justify-content: flex-start;
+  }
+  .nav-menu ul {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .nav-menu li {
+    width: 100%;
+    margin-right: 0;
+    align-items: flex-start;
+    font-size: 17px;
+    padding: 8px 0;
+  }
+  .nav-login-cart {
+    justify-content: flex-end;
+    gap: 8px;
+  }
+  .btn {
+    width: 80px;
+    height: 32px;
     font-size: 14px;
-    background-color: red;
-    color: white;
- }
- .link{
-    text-decoration: none;
-    color: black;
- }
+    border-radius: 12px;
+  }
+  .logo-name {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .Navbar {
+    padding: 6px 2vw;
+  }
+  .nav-logo img {
+    width: 28px;
+    height: auto;
+  }
+  .logo-name {
+    font-size: 12px;
+  }
+  .nav-menu ul {
+    font-size: 14px;
+  }
+  .btn {
+    width: 64px;
+    height: 28px;
+    font-size: 12px;
+    border-radius: 10px;
+  }
+}

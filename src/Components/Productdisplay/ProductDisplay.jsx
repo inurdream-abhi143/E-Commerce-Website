@@ -3,7 +3,8 @@ import "./ProductDisplay.css";
 import star_icon from "../assets/star_icon.png";
 import star_dull_icon from "../assets/star_dull_icon.png";
 import { ShopContext } from "../../Contexts/ShopContext";
-import ReactImageMagnify from "react-image-magnify";
+import "react-medium-image-zoom/dist/styles.css";
+import Zoom from "react-medium-image-zoom";
 
 const ProductDisplay = (props) => {
   const { product } = props;
@@ -18,22 +19,15 @@ const ProductDisplay = (props) => {
           <img src={product.image} alt="" />
         </div>
         <div className="productdisplay-img">
-          {/* <img className="productdisplay-main-img" src={product.image} /> */}
           <div className="productdisplay-main-img">
-            <ReactImageMagnify
-              {...{
-                smallImage: {
-                  alt: "product image",
-                  isFluidWidth: true,
-                  src: product.image,
-                },
-                largeImage: {
-                  src: product.image,
-                  width: 1200,
-                  height: 1600,
-                },
-              }}
-            />
+            <Zoom>
+              <img
+                alt="product"
+                src={product.image}
+                width="400"
+                style={{ objectFit: "cover" }}
+              />
+            </Zoom>
           </div>
         </div>
       </div>

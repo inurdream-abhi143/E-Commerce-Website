@@ -1,16 +1,22 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import OrderBar from "../Components/OrderBar/OrderBar";
 import "../Styles/Orders.css";
 
 const Orders = () => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterStatus, setFilterStatus] = useState("");
+  const [filterOrder, setFilterOrder] = useState([]);
   const OrderInfo = JSON.parse(localStorage.getItem("orderDetails")) || [];
 
-  const itemsPerPage = 5;
-  const totalPages = Math.ceil(OrderInfo.length / itemsPerPage);
+  const itemsPerPage = 10;
+  const totalPages = Math.ceil(filterOrder.length / itemsPerPage);
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = OrderInfo.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = filterOrder.slice(indexOfFirstItem, indexOfLastItem);
+
+  useEffect(() => {
+    setFilterOrder(OrderInfo);
+  }, []);
   const getNextPage = () => {
     // currentPage < totalPages ? setCurrentPage(currentPage + 1) : currentPage;
     if (currentPage < totalPages) {
@@ -23,9 +29,30 @@ const Orders = () => {
       setCurrentPage(currentPage - 1);
     }
   };
+
+  // for Order filtering by status
+
+  const onSearchOrder = () => {
+    const filtered = OrderInfo.filter(
+      (order) => order.customer.name === filterStatus
+    );
+    setFilterOrder(filtered.length > 0 ? filtered : OrderInfo);
+    setCurrentPage(1);
+  };
+
+  const clearFilter = () => {
+    setFilterStatus("");
+    setFilterOrder(OrderInfo);
+    setCurrentPage(1);
+  };
   return (
     <div className="all_orders ">
-      <OrderBar />
+      <OrderBar
+        filterStatus={filterStatus}
+        setFilterStatus={setFilterStatus}
+        clearFilter={clearFilter}
+        onSearchOrder={onSearchOrder}
+      />
       <div className="orders-table-container">
         <table>
           <thead>
@@ -42,7 +69,7 @@ const Orders = () => {
             {currentItems.map((orders, i) => {
               return (
                 <tr key={i}>
-                  <td>{i + 1}</td>
+                  <td>{indexOfFirstItem + 1}</td>
                   <td>{orders.orderId}</td>
                   <td>{orders.customer.name}</td>
                   <td>{orders.customer.email}</td>
@@ -60,7 +87,7 @@ const Orders = () => {
           PREV
         </button>
         <p className="admin-items-per-page">
-          {`${currentPage}-${totalPages} of total ${OrderInfo.length} Orders`}
+          {`${currentPage}-${totalPages} of total ${filterOrder.length} Orders`}
         </p>
         <button className="pagebtn" onClick={getNextPage}>
           NEXT

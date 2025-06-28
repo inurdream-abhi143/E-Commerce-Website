@@ -13,6 +13,7 @@ function Customer() {
   const [filterUsers, setFilterUsers] = useState("");
   const [filterStatus, setFilterStatus] = useState("All");
   const [currentPage, setCurrentPage] = useState(1);
+  
 
   const handleUserFilter = () => {
     const customers = JSON.parse(localStorage.getItem("signupInfo")) || [];

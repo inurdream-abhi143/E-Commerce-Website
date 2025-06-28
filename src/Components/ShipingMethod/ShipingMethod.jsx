@@ -1,4 +1,4 @@
-import React, { useContext, useReducer, useState } from "react";
+import React, { useContext, useEffect, useReducer, useState } from "react";
 import "./ShipingMethod.css";
 import { ShippingReducer } from "../Reducer/ShippingReducer";
 import { ShippingContext } from "../../Contexts/ShippingContext";
@@ -112,6 +112,7 @@ const ShipingMethod = () => {
     ) {
       setShippingInfo((prev) => ({ ...prev, ...userShippingInfo }));
       // setIsdisable(true);
+
       navigate("/payment");
       dispatch({ type: "Reset" });
       // setTimeout(() => dispatch({ type: "Reset" }), 0);
